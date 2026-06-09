@@ -1,0 +1,101 @@
+id , anio, satisfaccion_general, calidad_docente, instalaciones, contenido_curricular, soporte_tecnologico, plan_futuro, horas_estudio
+  1, 4to ,                    4,               5,             3,                    4,                   4, Trabajar   , 10-15
+  2, 2do ,                    3,               3,             2,                    3,                   3, Estudiar   , 5-10
+  3, 3ro ,                    5,               4,             4,                    5,                   5, Trabajar   , 15-20
+  4, 1ro ,                    4,               4,             3,                    4,                   3, Estudiar   , 10-15
+  5, 4to ,                    3,               3,             2,                    3,                   2, Trabajar   , 5-10
+  6, 2do ,                    4,               4,             4,                    4,                   4, Emprender  , 10-15
+  7, 3ro ,                    2,               3,             2,                    2,                   3, Indeciso   , menos de 5
+  8, 1ro ,                    5,               5,             4,                    5,                   4, Estudiar   , 15-20
+  9, 4to ,                    4,               4,             3,                    4,                   4, Trabajar   , 10-15
+ 10, 2do ,                    3,               3,             3,                    3,                   3, Estudiar   , 5-10
+ 11, 3ro ,                    4,               5,             4,                    4,                   4, Trabajar   , 10-15
+ 12, 1ro ,                    3,               4,             2,                    3,                   2, Emprender  , 5-10
+ 13, 4to ,                    5,               4,             4,                    5,                   5, Trabajar   , 15-20
+ 14, 2do ,                    4,               3,             3,                    4,                   3, Estudiar   , 10-15
+ 15, 3ro ,                    3,               4,             3,                    3,                   4, Trabajar   , 5-10
+ 16, 1ro ,                    4,               5,             4,                    4,                   4, Estudiar   , 10-15
+ 17, 4to ,                    2,               2,             2,                    3,                   2, Indeciso   , menos de 5
+ 18, 2do ,                    5,               5,             4,                    5,                   4, Trabajar   , 15-20
+ 19, 3ro ,                    4,               4,             3,                    4,                   3, Emprender  , 10-15
+ 20, 1ro ,                    3,               3,             3,                    3,                   3, Estudiar   , 5-10
+ 21, 4to ,                    4,               4,             4,                    4,                   4, Trabajar   , 10-15
+ 22, 2do ,                    3,               4,             2,                    3,                   3, Estudiar   , 5-10
+ 23, 3ro ,                    5,               5,             5,                    5,                   5, Trabajar   , 20+
+ 24, 1ro ,                    4,               3,             3,                    4,                   3, Estudiar   , 10-15
+ 25, 4to ,                    3,               3,             2,                    3,                   2, Trabajar   , 5-10
+ 26, 2do ,                    4,               4,             4,                    4,                   4, Emprender  , 10-15
+ 27, 3ro ,                    2,               2,             2,                    2,                   3, Indeciso   , menos de 5
+ 28, 1ro ,                    5,               4,             4,                    5,                   4, Estudiar   , 15-20
+ 29, 4to ,                    4,               5,             3,                    4,                   4, Trabajar   , 10-15
+ 30, 2do ,                    3,               3,             3,                    3,                   3, Estudiar   , 5-10
+ 31, 3ro ,                    4,               4,             4,                    4,                   4, Trabajar   , 10-15
+ 32, 1ro ,                    4,               4,             3,                    4,                   3, Estudiar   , 10-15
+ 33, 4to ,                    5,               5,             4,                    5,                   5, Trabajar   , 15-20
+ 34, 2do ,                    3,               3,             2,                    3,                   2, Estudiar   , 5-10
+ 35, 3ro ,                    4,               4,             3,                    4,                   4, Emprender  , 10-15
+ 36, 1ro ,                    3,               3,             3,                    3,                   3, Indeciso   , 5-10
+ 37, 4to ,                    5,               4,             5,                    5,                   4, Trabajar   , 20+
+ 38, 2do ,                    4,               5,             3,                    4,                   4, Estudiar   , 10-15
+ 39, 3ro ,                    3,               3,             2,                    3,                   3, Trabajar   , 5-10
+ 40, 1ro ,                    4,               4,             4,                    4,                   4, Estudiar   , 10-15
+ 41, 4to ,                    4,               4,             3,                    4,                   3, Trabajar   , 10-15
+ 42, 2do ,                    5,               5,             4,                    5,                   5, Emprender  , 15-20
+ 43, 3ro ,                    2,               3,             2,                    2,                   2, Indeciso   , menos de 5
+ 44, 1ro ,                    4,               3,             3,                    4,                   3, Estudiar   , 10-15
+ 45, 4to ,                    3,               4,             3,                    3,                   3, Trabajar   , 5-10
+ 46, 2do ,                    4,               4,             4,                    4,                   4, Estudiar   , 10-15
+ 47, 3ro ,                    5,               5,             5,                    5,                   5, Trabajar   , 20+
+ 48, 1ro ,                    3,               2,             2,                    3,                   2, Estudiar   , 5-10
+ 49, 4to ,                    4,               4,             4,                    4,                   4, Trabajar   , 10-15
+ 50, 2do ,                    3,               3,             3,                    3,                   3, Indeciso   , 5-10
+ 51, 3ro ,                    5,               4,             4,                    5,                   4, Trabajar   , 15-20
+ 52, 1ro ,                    4,               5,             3,                    4,                   4, Estudiar   , 10-15
+ 53, 4to ,                    2,               3,             2,                    2,                   2, Emprender  , menos de 5
+ 54, 2do ,                    4,               4,             4,                    4,                   4, Estudiar   , 10-15
+ 55, 3ro ,                    4,               4,             3,                    4,                   3, Trabajar   , 10-15
+ 56, 1ro ,                    5,               5,             5,                    5,                   4, Estudiar   , 15-20
+ 57, 4to ,                    3,               3,             2,                    3,                   3, Trabajar   , 5-10
+ 58, 2do ,                    4,               3,             4,                    4,                   3, Emprender  , 10-15
+ 59, 3ro ,                    3,               4,             3,                    3,                   4, Indeciso   , 5-10
+ 60, 1ro ,                    4,               4,             3,                    4,                   3, Estudiar   , 10-15
+ 61, 4to ,                    5,               5,             4,                    5,                   5, Trabajar   , 20+
+ 62, 2do ,                    3,               3,             3,                    3,                   3, Estudiar   , 5-10
+ 63, 3ro ,                    4,               4,             4,                    4,                   4, Trabajar   , 10-15
+ 64, 1ro ,                    2,               3,             2,                    2,                   2, Estudiar   , menos de 5
+ 65, 4to ,                    4,               4,             3,                    4,                   4, Trabajar   , 10-15
+ 66, 2do ,                    5,               4,             4,                    5,                   4, Emprender  , 15-20
+ 67, 3ro ,                    3,               3,             3,                    3,                   3, Indeciso   , 5-10
+ 68, 1ro ,                    4,               5,             4,                    4,                   4, Estudiar   , 10-15
+ 69, 4to ,                    4,               4,             4,                    4,                   4, Trabajar   , 10-15
+ 70, 2do ,                    3,               3,             2,                    3,                   2, Estudiar   , 5-10
+ 71, 3ro ,                    5,               5,             5,                    5,                   5, Trabajar   , 20+
+ 72, 1ro ,                    4,               3,             3,                    4,                   4, Estudiar   , 10-15
+ 73, 4to ,                    3,               4,             3,                    3,                   3, Trabajar   , 5-10
+ 74, 2do ,                    4,               4,             4,                    4,                   4, Estudiar   , 10-15
+ 75, 3ro ,                    4,               4,             3,                    4,                   3, Emprender  , 10-15
+ 76, 1ro ,                    3,               3,             3,                    3,                   3, Indeciso   , 5-10
+ 77, 4to ,                    5,               4,             5,                    5,                   4, Trabajar   , 15-20
+ 78, 2do ,                    4,               5,             4,                    4,                   4, Estudiar   , 10-15
+ 79, 3ro ,                    2,               2,             2,                    3,                   2, Trabajar   , menos de 5
+ 80, 1ro ,                    5,               5,             4,                    5,                   4, Estudiar   , 15-20
+ 81, 4to ,                    4,               4,             3,                    4,                   4, Trabajar   , 10-15
+ 82, 2do ,                    3,               3,             3,                    3,                   3, Emprender  , 5-10
+ 83, 3ro ,                    4,               4,             4,                    4,                   4, Indeciso   , 10-15
+ 84, 1ro ,                    4,               4,             3,                    4,                   3, Estudiar   , 10-15
+ 85, 4to ,                    5,               5,             5,                    5,                   5, Trabajar   , 20+
+ 86, 2do ,                    3,               4,             2,                    3,                   2, Estudiar   , 5-10
+ 87, 3ro ,                    4,               3,             4,                    4,                   3, Trabajar   , 10-15
+ 88, 1ro ,                    3,               3,             3,                    3,                   4, Estudiar   , 5-10
+ 89, 4to ,                    4,               5,             4,                    4,                   4, Trabajar   , 10-15
+ 90, 2do ,                    5,               4,             4,                    5,                   5, Emprender  , 15-20
+ 91, 3ro ,                    2,               3,             2,                    2,                   2, Indeciso   , menos de 5
+ 92, 1ro ,                    4,               4,             3,                    4,                   3, Estudiar   , 10-15
+ 93, 4to ,                    3,               3,             3,                    3,                   3, Trabajar   , 5-10
+ 94, 2do ,                    4,               4,             4,                    4,                   4, Estudiar   , 10-15
+ 95, 3ro ,                    5,               5,             5,                    5,                   5, Trabajar   , 20+
+ 96, 1ro ,                    4,               3,             3,                    4,                   3, Estudiar   , 10-15
+ 97, 4to ,                    3,               4,             2,                    3,                   2, Trabajar   , 5-10
+ 98, 2do ,                    4,               4,             4,                    4,                   4, Emprender  , 10-15
+ 99, 3ro ,                    5,               5,             4,                    5,                   5, Trabajar   , 15-20
+100, 1ro ,                    3,               3,             3,                    3,                   3, Indeciso   , 5-10

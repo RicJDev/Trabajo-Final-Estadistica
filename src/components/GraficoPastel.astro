@@ -1,0 +1,44 @@
+---
+export interface Props {
+  datos: { label: string; value: number }[]
+  titulo: string
+}
+
+const { datos, titulo } = Astro.props
+const chartData = JSON.stringify(datos)
+---
+
+<div class="chart-container">
+  <h3>{titulo}</h3>
+  <canvas
+    class="grafico-pastel"
+    data-chart={chartData}
+  ></canvas>
+</div>
+
+<script>
+  import { createPieChart } from '../utils/createChart'
+
+  document.querySelectorAll<HTMLCanvasElement>('.grafico-pastel').forEach((canvas) => {
+    const datos = JSON.parse(canvas.dataset.chart!)
+    const titulo = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    createPieChart(canvas, datos, titulo)
+  })
+</script>
+
+<style>
+  .chart-container {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+</style>

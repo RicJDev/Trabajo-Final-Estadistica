@@ -1,11 +1,123 @@
 ---
-import Welcome from '../components/Welcome.astro'
 import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import GraficoBarras from '../components/GraficoBarras.astro'
+import GraficoPastel from '../components/GraficoPastel.astro'
+import GraficoLineas from '../components/GraficoLineas.astro'
+import { resumenGeneral, satisfaccionPorAnio, promedioGeneral } from '../data/encuesta'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const resumen = resumenGeneral()
+const promAnio = satisfaccionPorAnio()
+const promedios = promedioGeneral()
 ---
 
 <Layout>
-  <Welcome />
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  <section class="hero">
+    <h1>Resultados de la Encuesta AIS 2026</h1>
+    <p>Visualización de datos basada en <strong>{resumen.total}</strong> respuestas simuladas de estudiantes.</p>
+  </section>
+
+  <section class="dashboard">
+    <div class="grid-2col">
+      <GraficoBarras
+        datos={resumen.satisfaccionGeneral}
+        titulo="Satisfacción general"
+      />
+      <GraficoBarras
+        datos={resumen.calidadDocente}
+        titulo="Calidad docente"
+      />
+    </div>
+
+    <div class="grid-2col">
+      <GraficoBarras
+        datos={resumen.instalaciones}
+        titulo="Instalaciones"
+      />
+      <GraficoBarras
+        datos={resumen.contenidoCurricular}
+        titulo="Contenido curricular"
+      />
+    </div>
+
+    <div class="grid-2col">
+      <GraficoPastel
+        datos={resumen.planesFuturo}
+        titulo="Planes después de graduarse"
+      />
+      <GraficoPastel
+        datos={resumen.horasEstudio}
+        titulo="Horas de estudio semanales"
+      />
+    </div>
+
+    <div class="grid-1col">
+      <GraficoLineas
+        anios={promAnio.anios}
+        datasets={promAnio.datasets}
+        titulo="Promedio de satisfacción por año de estudio"
+      />
+    </div>
+
+    <div class="grid-1col">
+      <GraficoBarras
+        datos={promedios}
+        titulo="Promedio general por categoría"
+      />
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    gap: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #111827;
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    max-width: 600px;
+  }
+
+  .dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .grid-1col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

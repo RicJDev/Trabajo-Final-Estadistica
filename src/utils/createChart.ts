@@ -1,0 +1,147 @@
+import {
+  Chart,
+  BarController,
+  BarElement,
+  DoughnutController,
+  ArcElement,
+  LineController,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+
+Chart.register(
+  BarController,
+  BarElement,
+  DoughnutController,
+  ArcElement,
+  LineController,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+)
+
+const COLOR_PALETTE = [
+  '#3b82f6', //
+  '#10b981',
+  '#f59e0b',
+  '#ef4444',
+  '#8b5cf6',
+  '#ec4899',
+  '#14b8a6',
+  '#f97316',
+]
+
+const COLORS_BY_NIVEL = {
+  1: '#93c5fd',
+  2: '#60a5fa',
+  3: '#3b82f6',
+  4: '#2563eb',
+  5: '#1d4ed8',
+}
+
+export function createBarChart(canvas: HTMLCanvasElement, data: Record<string, string>[], title: string) {
+  return new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: data.map((d) => d.label),
+      datasets: [
+        {
+          label: title,
+          data: data.map((d) => d.value),
+          backgroundColor: COLOR_PALETTE.slice(0, data.length),
+          borderRadius: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.parsed.y} respuestas`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1 },
+        },
+      },
+    },
+  })
+}
+
+export function createPieChart(canvas: HTMLCanvasElement, data: Record<string, string>[], title: string) {
+  return new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: data.map((d) => d.label),
+      datasets: [
+        {
+          data: data.map((d) => d.value),
+          backgroundColor: COLOR_PALETTE.slice(0, data.length),
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const total = ctx.dataset.data.reduce((a, b) => a + b, 0)
+              const pct = ((ctx.parsed / total) * 100).toFixed(1)
+              return `${ctx.label}: ${ctx.parsed} (${pct}%)`
+            },
+          },
+        },
+      },
+    },
+  })
+}
+
+export function createLineChart(canvas: HTMLCanvasElement, datos: any[], titulo: string) {
+  return new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: datos.anios,
+      datasets: datos.datasets.map((ds, i) => ({
+        ...ds,
+        borderColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
+        backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length] + '20',
+        fill: false,
+        tension: 0.3,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+      })),
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 5,
+          ticks: { stepSize: 1 },
+        },
+      },
+    },
+  })
+}
