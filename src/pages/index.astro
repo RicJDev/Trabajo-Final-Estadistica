@@ -2,9 +2,9 @@
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import GraficoBarras from '../components/GraficoBarras.astro'
-import GraficoPastel from '../components/GraficoPastel.astro'
-import GraficoLineas from '../components/GraficoLineas.astro'
+import BarChart from '../components/BarChart.astro'
+import PieChart from '../components/PieChart.astro'
+import LineChart from '../components/LineChart.astro'
 import { resumenGeneral, satisfaccionPorAnio, promedioGeneral } from '../data/encuesta'
 
 const resumen = resumenGeneral()
@@ -23,40 +23,40 @@ const promedios = promedioGeneral()
 
   <section class="dashboard">
     <div class="grid-2col">
-      <GraficoBarras
+      <BarChart
         datos={resumen.satisfaccionGeneral}
         titulo="Satisfacción general"
       />
-      <GraficoBarras
+      <BarChart
         datos={resumen.calidadDocente}
         titulo="Calidad docente"
       />
     </div>
 
     <div class="grid-2col">
-      <GraficoBarras
+      <BarChart
         datos={resumen.instalaciones}
         titulo="Instalaciones"
       />
-      <GraficoBarras
+      <BarChart
         datos={resumen.contenidoCurricular}
         titulo="Contenido curricular"
       />
     </div>
 
     <div class="grid-2col">
-      <GraficoPastel
+      <PieChart
         datos={resumen.planesFuturo}
         titulo="Planes después de graduarse"
       />
-      <GraficoPastel
+      <PieChart
         datos={resumen.horasEstudio}
         titulo="Horas de estudio semanales"
       />
     </div>
 
     <div class="grid-1col">
-      <GraficoLineas
+      <LineChart
         anios={promAnio.anios}
         datasets={promAnio.datasets}
         titulo="Promedio de satisfacción por año de estudio"
@@ -64,7 +64,7 @@ const promedios = promedioGeneral()
     </div>
 
     <div class="grid-1col">
-      <GraficoBarras
+      <BarChart
         datos={promedios}
         titulo="Promedio general por categoría"
       />

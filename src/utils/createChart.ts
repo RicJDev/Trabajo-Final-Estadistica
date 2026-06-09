@@ -111,12 +111,12 @@ export function createPieChart(canvas: HTMLCanvasElement, data: Record<string, s
   })
 }
 
-export function createLineChart(canvas: HTMLCanvasElement, datos: any[], titulo: string) {
+export function createLineChart(canvas: HTMLCanvasElement, data: any[]) {
   return new Chart(canvas, {
     type: 'line',
     data: {
-      labels: datos.anios,
-      datasets: datos.datasets.map((ds, i) => ({
+      // labels: datos.anios,
+      datasets: data.datasets.map((ds, i) => ({
         ...ds,
         borderColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
         backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length] + '20',
@@ -131,7 +131,7 @@ export function createLineChart(canvas: HTMLCanvasElement, datos: any[], titulo:
       plugins: {
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}`,
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2)}`,
           },
         },
       },
