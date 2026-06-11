@@ -1,0 +1,42 @@
+---
+export interface Props {
+  title: string
+  description: string
+  total: number
+}
+
+const { title, description, total } = Astro.props
+---
+
+<section class="survey-intro">
+  <h2>{title}</h2>
+
+  <p>{description}</p>
+  <p class="total">
+    <strong>{total}</strong> respuestas registradas
+  </p>
+</section>
+
+<style>
+  .survey-intro {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #111827;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: #4b5563;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .total {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: #6b7280;
+  }
+</style>

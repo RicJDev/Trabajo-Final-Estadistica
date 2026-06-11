@@ -20,9 +20,9 @@ const chartData = JSON.stringify(datos)
   import { createBarChart } from '../utils/createChart'
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-barras').forEach((canvas) => {
-    const datos = JSON.parse(canvas.dataset.chart!)
-    const titulo = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
-    createBarChart(canvas, datos, titulo)
+    const data = JSON.parse(canvas.dataset.chart!)
+    const title = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    createBarChart(canvas, data, title)
   })
 </script>
 

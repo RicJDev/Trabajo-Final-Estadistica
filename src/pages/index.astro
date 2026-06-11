@@ -2,14 +2,6 @@
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import BarChart from '../components/BarChart.astro'
-import PieChart from '../components/PieChart.astro'
-import LineChart from '../components/LineChart.astro'
-import { resumenGeneral, satisfaccionPorAnio, promedioGeneral } from '../data/encuesta'
-
-const resumen = resumenGeneral()
-const promAnio = satisfaccionPorAnio()
-const promedios = promedioGeneral()
 ---
 
 <Layout>
@@ -18,57 +10,7 @@ const promedios = promedioGeneral()
 
   <section class="hero">
     <h1>Resultados de la Encuesta AIS 2026</h1>
-    <p>Visualización de datos basada en <strong>{resumen.total}</strong> respuestas simuladas de estudiantes.</p>
-  </section>
-
-  <section class="dashboard">
-    <div class="grid-2col">
-      <BarChart
-        datos={resumen.satisfaccionGeneral}
-        titulo="Satisfacción general"
-      />
-      <BarChart
-        datos={resumen.calidadDocente}
-        titulo="Calidad docente"
-      />
-    </div>
-
-    <div class="grid-2col">
-      <BarChart
-        datos={resumen.instalaciones}
-        titulo="Instalaciones"
-      />
-      <BarChart
-        datos={resumen.contenidoCurricular}
-        titulo="Contenido curricular"
-      />
-    </div>
-
-    <div class="grid-2col">
-      <PieChart
-        datos={resumen.planesFuturo}
-        titulo="Planes después de graduarse"
-      />
-      <PieChart
-        datos={resumen.horasEstudio}
-        titulo="Horas de estudio semanales"
-      />
-    </div>
-
-    <div class="grid-1col">
-      <LineChart
-        anios={promAnio.anios}
-        datasets={promAnio.datasets}
-        titulo="Promedio de satisfacción por año de estudio"
-      />
-    </div>
-
-    <div class="grid-1col">
-      <BarChart
-        datos={promedios}
-        titulo="Promedio general por categoría"
-      />
-    </div>
+    <p>Visualización de datos recolectados de estudiantes y egresados de carreras tecnológicas.</p>
   </section>
 </Layout>
 
@@ -79,8 +21,8 @@ const promedios = promedioGeneral()
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 1.5rem;
-    gap: 1rem;
+    padding: 3rem 1.5rem;
+    gap: 0.75rem;
   }
 
   h1 {
@@ -92,32 +34,5 @@ const promedios = promedioGeneral()
     font-size: 1.125rem;
     color: #6b7280;
     max-width: 600px;
-  }
-
-  .dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .grid-1col {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 768px) {
-    .grid-2col {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

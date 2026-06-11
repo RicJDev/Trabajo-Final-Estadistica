@@ -22,8 +22,8 @@ const chartData = JSON.stringify({ anios, datasets })
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-lineas').forEach((canvas) => {
     const datos = JSON.parse(canvas.dataset.chart!)
-    const titulo = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
-    createLineChart(canvas, datos, titulo)
+    const title = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    createLineChart(canvas, datos, title)
   })
 </script>
 
