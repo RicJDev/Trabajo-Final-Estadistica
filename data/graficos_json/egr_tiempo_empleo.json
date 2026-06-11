@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "Menos de 3 meses",
+    "Ya trabajaba antes de graduarme",
+    "3-6 meses",
+    "Más de un año"
+  ],
+  "values": [
+    4,
+    3,
+    2,
+    1
+  ]
+}

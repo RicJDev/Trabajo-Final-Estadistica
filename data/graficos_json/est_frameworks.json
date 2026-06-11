@@ -1,0 +1,20 @@
+{
+  "labels": [
+    "Node.js",
+    "Django",
+    "React",
+    "Spring Boot",
+    "React / Next.js",
+    "Django / FastAPI",
+    "Angular"
+  ],
+  "values": [
+    4,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1
+  ]
+}

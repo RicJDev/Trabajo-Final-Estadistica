@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "0 horas",
+    "De 1 a 5 horas",
+    "De 6 a 10 horas",
+    "Más de 10 horas"
+  ],
+  "values": [
+    3,
+    4,
+    3,
+    3
+  ]
+}

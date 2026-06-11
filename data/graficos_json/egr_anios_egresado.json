@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "Menos de 1 año",
+    "1-3 años",
+    "4-6 años",
+    "Más de 6 años"
+  ],
+  "values": [
+    3,
+    3,
+    2,
+    2
+  ]
+}

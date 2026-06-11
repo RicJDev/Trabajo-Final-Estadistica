@@ -1,0 +1,108 @@
+---
+export interface Props {
+  xLabels: string[]
+  yLabels: string[]
+  data: number[][]
+  titulo: string
+}
+
+const { xLabels, yLabels, data, titulo } = Astro.props
+
+const maxVal = Math.max(1, ...data.flat())
+
+function color(value: number): string {
+  const intensity = value / maxVal
+  if (intensity === 0) return '#f8fafc'
+  if (intensity <= 0.25) return '#bfdbfe'
+  if (intensity <= 0.5) return '#60a5fa'
+  if (intensity <= 0.75) return '#3b82f6'
+  return '#1d4ed8'
+}
+---
+
+<div class="heatmap-container">
+  <h3>{titulo}</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          {
+            xLabels.map((xl) => (
+              <th>{xl}</th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          data.map((row, i) => (
+            <tr>
+              <th>{yLabels[i]}</th>
+              {
+                row.map((v) => (
+                  <td style={{ backgroundColor: color(v) }}>
+                    {v}
+                  </td>
+                ))
+              }
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .heatmap-container {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.875rem;
+  }
+
+  th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    color: #374151;
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  td {
+    text-align: center;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    border: 1px solid #e5e7eb;
+    min-width: 60px;
+  }
+</style>

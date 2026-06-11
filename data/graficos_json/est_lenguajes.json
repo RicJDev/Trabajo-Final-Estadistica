@@ -1,0 +1,20 @@
+{
+  "labels": [
+    "Python",
+    "SQL",
+    "JavaScript / TypeScript",
+    "Java",
+    "C++",
+    "C",
+    "Go"
+  ],
+  "values": [
+    8,
+    7,
+    3,
+    2,
+    1,
+    1,
+    1
+  ]
+}

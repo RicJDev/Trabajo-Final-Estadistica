@@ -145,3 +145,39 @@ export function createLineChart(canvas: HTMLCanvasElement, data: any[]) {
     },
   })
 }
+
+export function createGroupedBarChart(
+  canvas: HTMLCanvasElement,
+  data: { labels: string[]; datasets: { label: string; data: number[]; color: string }[] },
+  title: string
+) {
+  return new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: data.labels,
+      datasets: data.datasets.map((ds) => ({
+        label: ds.label,
+        data: ds.data,
+        backgroundColor: ds.color,
+        borderRadius: 6,
+      })),
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} respuestas`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1 },
+        },
+      },
+    },
+  })
+}

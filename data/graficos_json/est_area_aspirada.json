@@ -1,0 +1,26 @@
+{
+  "labels": [
+    "Desarrollo Web Frontend",
+    "Desarrollo Web Backend",
+    "Desarrollo de IA",
+    "No lo sé aún",
+    "Ciencia de Datos / Analítica",
+    "Ciberseguridad",
+    "Desarrollo Web Fullstack",
+    "Redes / Infraestructura",
+    "DevOps / Cloud",
+    "Gestión de Proyectos"
+  ],
+  "values": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}

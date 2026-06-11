@@ -1,0 +1,56 @@
+{
+  "title": "Co‑ocurrencia Lenguajes / Frameworks",
+  "xLabels": [
+    "React / Next.js",
+    "Angular",
+    "Vue.js",
+    "Node.js",
+    "Spring Boot",
+    "Django / FastAPI",
+    "Flutter / React Native"
+  ],
+  "yLabels": [
+    "JavaScript / TypeScript",
+    "Python",
+    "Java",
+    "SQL"
+  ],
+  "data": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      3,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      3,
+      2,
+      1,
+      0
+    ]
+  ]
+}

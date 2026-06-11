@@ -1,0 +1,45 @@
+---
+export interface Props {
+  labels: string[]
+  datasets: { label: string; data: number[]; color: string }[]
+  titulo: string
+}
+
+const { labels, datasets, titulo } = Astro.props
+const chartData = JSON.stringify({ labels, datasets })
+---
+
+<div class="chart-container">
+  <h3>{titulo}</h3>
+  <canvas
+    class="grafico-barras-agrupadas"
+    data-chart={chartData}
+  ></canvas>
+</div>
+
+<script>
+  import { createGroupedBarChart } from '../utils/createChart'
+
+  document.querySelectorAll<HTMLCanvasElement>('.grafico-barras-agrupadas').forEach((canvas) => {
+    const data = JSON.parse(canvas.dataset.chart!)
+    const title = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    createGroupedBarChart(canvas, data, title)
+  })
+</script>
+
+<style>
+  .chart-container {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+</style>

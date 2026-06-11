@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "Básico",
+    "Intermedio",
+    "Avanzado",
+    "Fluido / Nativo"
+  ],
+  "values": [
+    1,
+    3,
+    4,
+    2
+  ]
+}
