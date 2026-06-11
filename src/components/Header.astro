@@ -1,6 +1,16 @@
+---
+import { Image } from 'astro:assets'
+import UNERGLogo from '../assets/logo-unerg.png'
+---
+
 <header>
   <div class="header-inner">
     <span class="logo">Encuesta AIS 2026</span>
+    <Image
+      src={UNERGLogo}
+      class='logo-img'
+      alt="Logo de la Universidad Nacional Experimental Rómulo Gallegos"
+    />
   </div>
 </header>
 
@@ -13,7 +23,14 @@
   .header-inner {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 1rem 1.5rem;
+  }
+
+  .logo-img {
+    max-width: 120px;
   }
 
   .logo {

@@ -61,19 +61,23 @@ export function createBarChart(canvas: HTMLCanvasElement, data: Record<string, s
       ],
     },
     options: {
+      indexAxis: 'y',
       responsive: true,
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.parsed.y} respuestas`,
+            label: (ctx) => `${ctx.parsed.x} respuestas`,
           },
         },
       },
       scales: {
-        y: {
+        x: {
           beginAtZero: true,
           ticks: { stepSize: 1 },
+        },
+        y: {
+          ticks: { autoSkip: false },
         },
       },
     },
@@ -163,19 +167,25 @@ export function createGroupedBarChart(
       })),
     },
     options: {
+      indexAxis: 'y',
       responsive: true,
       plugins: {
         legend: { position: 'bottom' },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} respuestas`,
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x} respuestas`,
           },
         },
       },
       scales: {
-        y: {
+        x: {
           beginAtZero: true,
+          stacked: true,
           ticks: { stepSize: 1 },
+        },
+        y: {
+          stacked: true,
+          ticks: { autoSkip: false },
         },
       },
     },
