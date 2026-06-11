@@ -14,8 +14,10 @@
     "check": "prettier --check ."
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.3",
-    "chart.js": "^4.5.1"
+    "chart.js": "^4.5.1",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
