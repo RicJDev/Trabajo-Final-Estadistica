@@ -1,5 +1,6 @@
 import os
 import json
+from collections import defaultdict
 from apiclient import discovery
 from httplib2 import Http
 from oauth2client import client, file, tools
@@ -33,16 +34,41 @@ service = discovery.build(
 )
 
 
-def get_questions(form_id):
+def get_questions_info(form_id):
     form = service.forms().get(formId=form_id).execute()
-    questions = {}
+
+    questions = []
     if "items" in form:
         for item in form["items"]:
             if "questionItem" in item:
-                q_id = item["questionItem"]["question"]["questionId"]
-                title = item["title"]
-                questions[q_id] = title
+                q = item["questionItem"]["question"]
+                q_id = q.get("questionId")
+                title = item.get("title", "")
+                choices = None
+
+                if "choiceQuestion" in q:
+                    choice_info = q["choiceQuestion"]
+                    if "options" in choice_info:
+                        choices = [opt.get("value", "")
+                                   for opt in choice_info["options"]]
+
+                questions.append({
+                    "id": q_id,
+                    "title": title,
+                    "choices": choices
+                })
     return questions
+
+
+def extract_answer_values(answer):
+    values = []
+    if "textAnswers" in answer:
+        for ans in answer["textAnswers"]["answers"]:
+            values.append(ans["value"])
+    elif "fileUploadAnswers" in answer:
+        for ans in answer["fileUploadAnswers"]["answers"]:
+            values.append(ans["fileId"])
+    return values
 
 
 def get_all_responses(form_id):
@@ -61,42 +87,47 @@ def get_all_responses(form_id):
     return responses
 
 
-def extract_answer_values(answer):
-    values = []
-    if "textAnswers" in answer:
-        for ans in answer["textAnswers"]["answers"]:
-            values.append(ans["value"])
-    elif "fileUploadAnswers" in answer:
-        for ans in answer["fileUploadAnswers"]["answers"]:
-            values.append(ans["fileId"])
-    return values
-
-
 def process_form(form_id, output_filename):
     if not form_id:
         print(f"ID de formulario vacío, saltando...")
         return
 
-    questions = get_questions(form_id)
-    responses = get_all_responses(form_id)
+    questions_info = get_questions_info(form_id)
 
-    form_answers = {}
+    responses = get_all_responses(form_id)
+    actual_counts = defaultdict(lambda: defaultdict(int))
 
     for resp in responses:
         answers_dict = resp.get("answers", {})
         for q_id, answer in answers_dict.items():
-            question_text = questions.get(q_id, q_id)
             values = extract_answer_values(answer)
-            if not values:
-                continue
-            if question_text not in form_answers:
-                form_answers[question_text] = []
-            form_answers[question_text].extend(values)
+            for value in values:
+                if value:
+                    actual_counts[q_id][value] += 1
 
+    form_answers = {}
+    for q_info in questions_info:
+        q_id = q_info["id"]
+        title = q_info["title"]
+        choices = q_info["choices"]
+
+        if choices is not None:
+            answer_counts = {choice: 0 for choice in choices}
+        else:
+            answer_counts = {}
+
+        if q_id in actual_counts:
+            for ans, cnt in actual_counts[q_id].items():
+                answer_counts[ans] = cnt
+
+        form_answers[title] = answer_counts
+
+    # 4. Guardar a JSON
     with open(output_filename, "w", encoding="utf-8") as f:
         json.dump(form_answers, f, indent=2, ensure_ascii=False)
 
-    print(f"Archivo {output_filename} generado con {len(form_answers)} preguntas.")
+    print(
+        f"Archivo {output_filename} generado con {len(form_answers)} preguntas.")
 
 
 if __name__ == "__main__":
