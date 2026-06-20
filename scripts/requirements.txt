@@ -1,1 +1,6 @@
-pandas>=2.1.4
+python-dotenv
+pandas
+google-auth
+google-api-python-client
+oauth2client
+
