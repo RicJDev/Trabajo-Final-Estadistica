@@ -2,18 +2,24 @@
 export interface Props {
   datos: { label: string; value: number }[]
   titulo: string
+  descripcion?: string
 }
 
-const { datos, titulo } = Astro.props
+const { datos, titulo, descripcion } = Astro.props
 const chartData = JSON.stringify(datos)
+const chartHeight = Math.max(250, datos.length * 28)
+const containerHeight = chartHeight + 100
 ---
 
-<div class="chart-container">
+<div class="chart-container" style={`min-height: ${containerHeight}px`}>
   <h3>{titulo}</h3>
-  <canvas
-    class="grafico-barras"
-    data-chart={chartData}
-  ></canvas>
+  {descripcion && <p class="chart-desc">{descripcion}</p>}
+  <div class="chart-wrapper" style={`height: ${chartHeight}px`}>
+    <canvas
+      class="grafico-barras"
+      data-chart={chartData}
+    ></canvas>
+  </div>
 </div>
 
 <script>
@@ -33,7 +39,11 @@ const chartData = JSON.stringify(datos)
     border-radius: 8px;
     padding: 1.5rem;
     width: 100%;
-    min-height: 300px;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
   }
 
   h3 {
@@ -41,5 +51,12 @@ const chartData = JSON.stringify(datos)
     font-weight: 600;
     color: #111827;
     margin-bottom: 1rem;
+  }
+
+  .chart-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+    line-height: 1.5;
   }
 </style>

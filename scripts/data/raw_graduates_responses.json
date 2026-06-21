@@ -1,0 +1,264 @@
+[
+  {
+    "responseId": "ACYDBNjp4auU9XnDuAh0HLXlfXrjDpD1hWeQsmaBhGDWkK5yUdn08wSGJVtqyiD5_w",
+    "createTime": "2026-06-17T00:04:10.678Z",
+    "lastSubmittedTime": "2026-06-17T00:04:10.678638Z",
+    "answers": {
+      "57068564": {
+        "questionId": "57068564",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "El rendimiento demostrado en las pruebas técnicas del proceso"
+            }
+          ]
+        }
+      },
+      "7c745229": {
+        "questionId": "7c745229",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "C++"
+            },
+            {
+              "value": "Java"
+            },
+            {
+              "value": "JavaScript"
+            },
+            {
+              "value": "Python"
+            },
+            {
+              "value": "SQL"
+            }
+          ]
+        }
+      },
+      "69842ab6": {
+        "questionId": "69842ab6",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Django"
+            },
+            {
+              "value": "WordPress"
+            }
+          ]
+        }
+      },
+      "2524b367": {
+        "questionId": "2524b367",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Me permite asumir tareas más complejas que antes requerían más investigación"
+            }
+          ]
+        }
+      },
+      "5e9090b4": {
+        "questionId": "5e9090b4",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Ya me encontraba trabajando en el área antes de graduarme"
+            }
+          ]
+        }
+      },
+      "37b9dc70": {
+        "questionId": "37b9dc70",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Sí"
+            }
+          ]
+        }
+      },
+      "5b46c850": {
+        "questionId": "5b46c850",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Más de 6 años"
+            }
+          ]
+        }
+      },
+      "532b020d": {
+        "questionId": "532b020d",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Básico"
+            }
+          ]
+        }
+      },
+      "7a5496a6": {
+        "questionId": "7a5496a6",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Diariamente (Están completamente integradas en mi flujo de trabajo regular)"
+            }
+          ]
+        }
+      },
+      "028a9705": {
+        "questionId": "028a9705",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Docencia / Divulgación"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "responseId": "ACYDBNgKeOaQAK__80lqpreLdnqn0J6XBRIpSiaDCf5kgEGEmFTmxFIiwjRgRleF6A",
+    "createTime": "2026-06-20T00:40:56.585Z",
+    "lastSubmittedTime": "2026-06-20T00:40:56.585062Z",
+    "answers": {
+      "57068564": {
+        "questionId": "57068564",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Mi experiencia laboral previa o portafolio de proyectos independientes"
+            }
+          ]
+        }
+      },
+      "7c745229": {
+        "questionId": "7c745229",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Dart"
+            },
+            {
+              "value": "Java"
+            },
+            {
+              "value": "JavaScript"
+            },
+            {
+              "value": "PHP"
+            },
+            {
+              "value": "Python"
+            },
+            {
+              "value": "SQL"
+            }
+          ]
+        }
+      },
+      "69842ab6": {
+        "questionId": "69842ab6",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Django"
+            },
+            {
+              "value": "FastAPI"
+            },
+            {
+              "value": "Laravel"
+            },
+            {
+              "value": "Next.js"
+            },
+            {
+              "value": "React"
+            },
+            {
+              "value": "Vue.js"
+            },
+            {
+              "value": "WordPress"
+            }
+          ]
+        }
+      },
+      "2524b367": {
+        "questionId": "2524b367",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "No ha tenido un impacto significativo en mi rutina diaria"
+            }
+          ]
+        }
+      },
+      "5e9090b4": {
+        "questionId": "5e9090b4",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Más de un año"
+            }
+          ]
+        }
+      },
+      "37b9dc70": {
+        "questionId": "37b9dc70",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "No"
+            }
+          ]
+        }
+      },
+      "5b46c850": {
+        "questionId": "5b46c850",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Más de 6 años"
+            }
+          ]
+        }
+      },
+      "532b020d": {
+        "questionId": "532b020d",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Básico"
+            }
+          ]
+        }
+      },
+      "7a5496a6": {
+        "questionId": "7a5496a6",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Ocasionalmente (Para consultas puntuales, revisión de errores o refactorización)"
+            }
+          ]
+        }
+      },
+      "028a9705": {
+        "questionId": "028a9705",
+        "textAnswers": {
+          "answers": [
+            {
+              "value": "Desarrollo Fullstack"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

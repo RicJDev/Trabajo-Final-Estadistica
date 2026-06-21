@@ -1,0 +1,18 @@
+{
+  "labels": [
+    "Servicios hosting de repositorios (GitHub, GitLab)",
+    "Ninguna de las anteriores",
+    "Control de versiones (Git)",
+    "Contenedores (Docker / Kubernetes)",
+    "Entornos de sistemas operativos (Linux / Bash)",
+    "Herramientas de automatización / CI-CD (Jenkins, GitHub Actions)"
+  ],
+  "values": [
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}

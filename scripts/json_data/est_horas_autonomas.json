@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "De 1 a 5 horas",
+    "0 horas (solo cumplo con las asignaciones de la universidad)",
+    "De 6 a 10 horas",
+    "Más de 10 horas"
+  ],
+  "values": [
+    114,
+    37,
+    15,
+    6
+  ]
+}

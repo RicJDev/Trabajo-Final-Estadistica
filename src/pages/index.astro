@@ -2,15 +2,89 @@
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import BarChart from '../components/BarChart.astro'
+import PieChart from '../components/PieChart.astro'
+import HeatmapChart from '../components/HeatmapChart.astro'
+import InsightsPanel from '../components/InsightsPanel.astro'
+
+import estAreaAspirada from '../../scripts/json_data/est_area_aspirada.json'
+import estFactorEmpleo from '../../scripts/json_data/est_factor_empleo.json'
+import estFrameworks from '../../scripts/json_data/est_frameworks.json'
+import estFrecuenciaIa from '../../scripts/json_data/est_frecuencia_ia.json'
+import estHorasAutonomas from '../../scripts/json_data/est_horas_autonomas.json'
+import estImpactoIa from '../../scripts/json_data/est_impacto_ia.json'
+import estLenguajes from '../../scripts/json_data/est_lenguajes.json'
+import estMetaGraduacion from '../../scripts/json_data/est_meta_graduacion.json'
+import heatmap from '../../scripts/json_data/heatmap_lenguajes_frameworks.json'
+import insights from '../../scripts/json_data/insights.json'
+
+function toEntries(labels: string[], values: number[]) {
+  return labels.map((label, i) => ({ label, value: values[i] }))
+}
+
+function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
+  const main = data.labels
+    .map((label, i) => ({ label, value: data.values[i] }))
+    .filter((e) => e.value > 1)
+  const otherCount = data.values.reduce(
+    (sum, v) => (v === 1 ? sum + v : sum),
+    0,
+  )
+  if (otherCount > 0) main.push({ label: 'Otra', value: otherCount })
+  return main
+}
 ---
 
 <Layout>
   <Header slot="header" />
   <Footer slot="footer" />
 
-  <section class="hero">
+  <section id="inicio" class="hero">
     <h1>Resultados de la Encuesta AIS 2026</h1>
-    <p>Visualización de datos recolectados de estudiantes y egresados de el Área de Ingeniería en Sistemas (AIS) de la Universidad Nacional Experimental Rómulo Gallegos</p>
+    <p>Visualización de datos recolectados de los estudiantes del Área de Ingeniería en Sistemas (AIS) de la Universidad Nacional Experimental Rómulo Gallegos</p>
+  </section>
+
+  <section id="resumen" class="section">
+    <h2>Resumen</h2>
+    <InsightsPanel insights={insights} />
+  </section>
+
+  <section id="estudiantes" class="section">
+    <h2>Estudiantes</h2>
+    <div class="grid-2">
+      <BarChart datos={toEntries(estLenguajes.labels, estLenguajes.values)} titulo="¿Qué lenguajes de programación estás estudiando o te interesa aprender activamente por tu cuenta?" descripcion="Python y JavaScript lideran como los lenguajes más populares entre los estudiantes, reflejando su versatilidad en desarrollo web, ciencia de datos y automatización." />
+      <BarChart datos={toEntries(estFrameworks.labels, estFrameworks.values)} titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?" descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno." />
+      <BarChart datos={toEntries(estAreaAspirada.labels, estAreaAspirada.values)} titulo="¿A qué área de la tecnología te gustaría dedicarte principalmente cuando te gradúes?" descripcion="El desarrollo de videojuegos y la ciberseguridad son las áreas que más atraen a los estudiantes, seguidas por el desarrollo fullstack." />
+      <BarChart datos={toEntries(estHorasAutonomas.labels, estHorasAutonomas.values)} titulo="¿Cuántas horas a la semana le dedicas a estudiar tecnología de forma autónoma?" descripcion="La mayoría de los estudiantes dedica entre 1 y 5 horas semanales al estudio autónomo, mientras que un grupo significativo solo cumple con las asignaciones universitarias." />
+      <PieChart datos={toEntries(estFactorEmpleo.labels, estFactorEmpleo.values)} titulo="¿Qué factor crees que será el más determinante para conseguir tu primer empleo en tecnología?" descripcion="El título universitario es considerado el factor más importante para conseguir empleo, seguido por el portafolio de proyectos personales." />
+      <PieChart datos={toEntries(estImpactoIa.labels, estImpactoIa.values)} titulo="¿Qué impacto crees que tendrá la Inteligencia Artificial en el rol profesional al que aspiras en los próximos 5 años?" descripcion="La gran mayoría cree que la IA será una herramienta obligatoria que aumentará la productividad sin reemplazar el rol del profesional." />
+      <PieChart datos={groupSinglesAsOther(estMetaGraduacion)} titulo="¿Cuál es tu meta principal a corto plazo tras graduarte?" descripcion="Trabajar de forma remota para una empresa extranjera es la meta principal, seguida por el emprendimiento, reflejando una visión global y orientada a la autonomía." />
+      <PieChart datos={toEntries(estFrecuenciaIa.labels, estFrecuenciaIa.values)} titulo="¿Con qué frecuencia utilizas asistentes de Inteligencia Artificial para resolver tareas de la universidad o aprender a programar?" descripcion="Más de la mitad de los estudiantes usa IA a diario como parte fundamental de su método de estudio, y un porcentaje considerable la usa ocasionalmente." />
+    </div>
+  </section>
+
+  <section id="heatmap" class="section">
+    <h2>Heatmap: Lenguajes y Frameworks</h2>
+    <div class="grid-1">
+      <HeatmapChart
+        xLabels={heatmap.xLabels}
+        yLabels={heatmap.yLabels}
+        data={heatmap.data}
+        titulo={heatmap.title}
+        descripcion="La celda resaltada en azul más oscuro muestra la combinación más frecuente: Node.js con JavaScript, seguido de Python con Node.js y React con JavaScript. Esto confirma que el ecosistema JavaScript/Node.js es el más dominante entre los estudiantes."
+      />
+    </div>
+  </section>
+
+  <section id="sobre-nosotros" class="section">
+    <h2>Sobre Nosotros</h2>
+    <p class="section-desc">Encuesta realizada por los estudiantes del Área de Ingeniería en Sistemas de la UNERG.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <h3>Ricardo J. Díaz</h3>
+        <p>Estudiante de Ingeniería en Sistemas</p>
+      </div>
+    </div>
   </section>
 </Layout>
 
@@ -34,5 +108,63 @@ import Footer from '../components/Footer.astro'
     font-size: 1.125rem;
     color: #6b7280;
     max-width: 600px;
+  }
+
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .section > h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .grid-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .team-card {
+    flex: 1 1 250px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .team-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+  }
+
+  .team-card p {
+    font-size: 0.875rem;
+    color: #6b7280;
   }
 </style>

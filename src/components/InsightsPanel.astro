@@ -1,0 +1,105 @@
+---
+export interface Props {
+  insights: {
+    estudiantes: {
+      total: number
+      top_lenguajes: { label: string; count: number }[]
+      top_frameworks: { label: string; count: number }[]
+      top_areas: { label: string; count: number }[]
+      distribucion_horas: { label: string; count: number }[]
+      factor_empleo: { label: string; count: number }[]
+      impacto_ia: { label: string; count: number }[]
+      frecuencia_ia: { label: string; count: number }[]
+      meta_graduacion: { label: string; count: number }[]
+      uso_diario_ia_pct: number
+      impacto_positivo_ia_pct: number
+    }
+  }
+}
+
+const { insights } = Astro.props
+const e = insights.estudiantes
+---
+
+<div class="insights-grid">
+  <div class="insight-card highlight">
+    <span class="insight-stat">{e.total}</span>
+    <span class="insight-label">Estudiantes encuestados</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.top_lenguajes[0]?.label}</span>
+    <span class="insight-label">Lenguaje más popular (estudiantes) — {e.top_lenguajes[0]?.count} respuestas</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.top_frameworks[0]?.label}</span>
+    <span class="insight-label">Framework más popular (estudiantes) — {e.top_frameworks[0]?.count} respuestas</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.top_areas[0]?.label}</span>
+    <span class="insight-label">Área más aspirada — {e.top_areas[0]?.count} respuestas</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.uso_diario_ia_pct}%</span>
+    <span class="insight-label">Usan IA a diario</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.impacto_positivo_ia_pct}%</span>
+    <span class="insight-label">Creen que IA será herramienta obligatoria</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.meta_graduacion[0]?.label}</span>
+    <span class="insight-label">Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.factor_empleo[0]?.label}</span>
+    <span class="insight-label">Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas</span>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-stat">{e.distribucion_horas[0]?.label}</span>
+    <span class="insight-label">Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas</span>
+  </div>
+</div>
+
+<style>
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .insight-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .insight-card.highlight {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+  }
+
+  .insight-stat {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1d4ed8;
+    line-height: 1.2;
+  }
+
+  .insight-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+</style>

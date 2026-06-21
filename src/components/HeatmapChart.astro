@@ -4,9 +4,10 @@ export interface Props {
   yLabels: string[]
   data: number[][]
   titulo: string
+  descripcion?: string
 }
 
-const { xLabels, yLabels, data, titulo } = Astro.props
+const { xLabels, yLabels, data, titulo, descripcion } = Astro.props
 
 const maxVal = Math.max(1, ...data.flat())
 
@@ -22,6 +23,7 @@ function color(value: number): string {
 
 <div class="heatmap-container">
   <h3>{titulo}</h3>
+  {descripcion && <p class="chart-desc">{descripcion}</p>}
   <div class="table-wrapper">
     <table>
       <thead>
@@ -68,6 +70,13 @@ function color(value: number): string {
     font-weight: 600;
     color: #111827;
     margin-bottom: 1rem;
+  }
+
+  .chart-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+    line-height: 1.5;
   }
 
   .table-wrapper {

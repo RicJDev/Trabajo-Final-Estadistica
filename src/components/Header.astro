@@ -5,7 +5,14 @@ import UNERGLogo from '../assets/logo-unerg.png'
 
 <header>
   <div class="header-inner">
-    <span class="logo">Encuesta AIS 2026</span>
+    <a href="#inicio" class="logo">Encuesta AIS 2026</a>
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#resumen">Resumen</a>
+      <a href="#estudiantes">Estudiantes</a>
+      <a href="#heatmap">Heatmap</a>
+      <a href="#sobre-nosotros">Sobre Nosotros</a>
+    </nav>
     <Image
       src={UNERGLogo}
       class='logo-img'
@@ -18,6 +25,9 @@ import UNERGLogo from '../assets/logo-unerg.png'
   header {
     border-bottom: 1px solid #e5e7eb;
     background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .header-inner {
@@ -26,16 +36,40 @@ import UNERGLogo from '../assets/logo-unerg.png'
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 1.5rem;
+    gap: 1rem;
   }
 
   .logo-img {
-    max-width: 120px;
+    max-width: 80px;
+    flex-shrink: 0;
   }
 
   .logo {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 700;
+    color: #111827;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    font-size: 0.875rem;
+    color: #4b5563;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .nav a:hover {
+    background: #f3f4f6;
     color: #111827;
   }
 </style>

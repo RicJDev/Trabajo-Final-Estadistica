@@ -2,14 +2,16 @@
 export interface Props {
   datos: { label: string; value: number }[]
   titulo: string
+  descripcion?: string
 }
 
-const { datos, titulo } = Astro.props
+const { datos, titulo, descripcion } = Astro.props
 const chartData = JSON.stringify(datos)
 ---
 
 <div class="chart-container">
   <h3>{titulo}</h3>
+  {descripcion && <p class="chart-desc">{descripcion}</p>}
   <canvas
     class="grafico-pastel"
     data-chart={chartData}
@@ -40,5 +42,12 @@ const chartData = JSON.stringify(datos)
     font-weight: 600;
     color: #111827;
     margin-bottom: 1rem;
+  }
+
+  .chart-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+    line-height: 1.5;
   }
 </style>
