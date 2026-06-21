@@ -8,35 +8,11 @@ export interface Props {
 const { title, description, total } = Astro.props
 ---
 
-<section class="survey-intro">
-  <h2>{title}</h2>
+<section class="mb-8">
+  <h2 class="text-2xl text-gray-900 mb-3">{title}</h2>
 
-  <p>{description}</p>
-  <p class="total">
+  <p class="text-gray-700 leading-relaxed max-w-[800px]">{description}</p>
+  <p class="mt-3 text-[0.95rem] text-gray-500">
     <strong>{total}</strong> respuestas registradas
   </p>
 </section>
-
-<style>
-  .survey-intro {
-    margin-bottom: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    color: #111827;
-    margin-bottom: 0.75rem;
-  }
-
-  p {
-    color: #4b5563;
-    line-height: 1.6;
-    max-width: 800px;
-  }
-
-  .total {
-    margin-top: 0.75rem;
-    font-size: 0.95rem;
-    color: #6b7280;
-  }
-</style>

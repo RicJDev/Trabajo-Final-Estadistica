@@ -9,8 +9,8 @@ const { anios, datasets, titulo } = Astro.props
 const chartData = JSON.stringify({ anios, datasets })
 ---
 
-<div class="chart-container">
-  <h3>{titulo}</h3>
+<div class="bg-white border border-gray-200 rounded-lg p-6 w-full">
+  <h3 class="text-base font-semibold text-gray-900 mb-4">{titulo}</h3>
   <canvas
     class="grafico-lineas"
     data-chart={chartData}
@@ -22,24 +22,7 @@ const chartData = JSON.stringify({ anios, datasets })
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-lineas').forEach((canvas) => {
     const datos = JSON.parse(canvas.dataset.chart!)
-    const title = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
     createLineChart(canvas, datos, title)
   })
 </script>
-
-<style>
-  .chart-container {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-    width: 100%;
-  }
-
-  h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-</style>

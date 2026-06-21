@@ -3,79 +3,79 @@ import { Image } from 'astro:assets'
 import UNERGLogo from '../assets/logo-unerg.png'
 ---
 
-<header>
-  <div class="header-inner">
-    <a
-      href="#inicio"
-      class="logo"
-      >Encuesta AIS 2026</a
-    >
-    <nav class="nav">
-      <a href="#inicio">Inicio</a>
-      <a href="#resumen">Resumen</a>
-      <a href="#estudiantes">Estudiantes</a>
-      <a href="#heatmap">Heatmap</a>
-      <a href="#sobre-nosotros">Sobre Nosotros</a>
+<header class="sticky top-0 z-100 bg-white border-b border-gray-200">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 gap-4">
+    <div class="flex items-center gap-2">
+      <button
+        id="menu-toggle"
+        class="md:hidden p-2 rounded transition hover:bg-gray-100"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon-open" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <a
+        href="#inicio"
+        class="text-lg font-bold text-gray-900 no-underline whitespace-nowrap"
+        >Encuesta AIS 2026</a
+      >
+    </div>
+    <nav class="hidden md:flex gap-3 flex-wrap">
+      <a href="#inicio" class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900">Inicio</a>
+      <a href="#resumen" class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900">Resumen</a>
+      <a href="#estudiantes" class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900">Estudiantes</a>
+      <a href="#heatmap" class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900">Heatmap</a>
+      <a href="#sobre-nosotros" class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900">Sobre Nosotros</a>
     </nav>
     <Image
       src={UNERGLogo}
-      class="logo-img"
+      class="max-w-20 shrink-0"
       alt="Logo de la Universidad Nacional Experimental Rómulo Gallegos"
     />
   </div>
+  <div
+    id="mobile-menu"
+    class="md:hidden overflow-hidden transition-all duration-300 max-h-0"
+  >
+    <nav class="flex flex-col gap-1 px-6 pb-4 pt-2 border-t border-gray-100">
+      <a href="#inicio" class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900">Inicio</a>
+      <a href="#resumen" class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900">Resumen</a>
+      <a href="#estudiantes" class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900">Estudiantes</a>
+      <a href="#heatmap" class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900">Heatmap</a>
+      <a href="#sobre-nosotros" class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900">Sobre Nosotros</a>
+    </nav>
+  </div>
 </header>
 
-<style>
-  header {
-    border-bottom: 1px solid #e5e7eb;
-    background: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+<script>
+  const toggle = document.getElementById('menu-toggle')
+  const menu = document.getElementById('mobile-menu')
+  const iconOpen = document.getElementById('menu-icon-open')
+  const iconClose = document.getElementById('menu-icon-close')
 
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.5rem;
-    gap: 1rem;
-  }
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true'
+    toggle.setAttribute('aria-expanded', !isOpen)
+    toggle.setAttribute('aria-label', isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación')
+    menu?.classList.toggle('max-h-0', isOpen)
+    menu?.classList.toggle('max-h-96', !isOpen)
+    iconOpen?.classList.toggle('hidden', !isOpen)
+    iconClose?.classList.toggle('hidden', isOpen)
+  })
 
-  .logo-img {
-    max-width: 80px;
-    flex-shrink: 0;
-  }
-
-  .logo {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #111827;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .nav {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .nav a {
-    font-size: 0.875rem;
-    color: #4b5563;
-    text-decoration: none;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition:
-      background 0.15s,
-      color 0.15s;
-  }
-
-  .nav a:hover {
-    background: #f3f4f6;
-    color: #111827;
-  }
-</style>
+  document.querySelectorAll('#mobile-menu a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false')
+      toggle?.setAttribute('aria-label', 'Abrir menú de navegación')
+      menu?.classList.add('max-h-0')
+      menu?.classList.remove('max-h-96')
+      iconOpen?.classList.remove('hidden')
+      iconClose?.classList.add('hidden')
+    })
+  })
+</script>

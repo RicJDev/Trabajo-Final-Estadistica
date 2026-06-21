@@ -9,9 +9,9 @@ const { datos, titulo, descripcion } = Astro.props
 const chartData = JSON.stringify(datos)
 ---
 
-<div class="chart-container">
-  <h3>{titulo}</h3>
-  {descripcion && <p class="chart-desc">{descripcion}</p>}
+<div class="bg-white border border-gray-200 rounded-lg p-6 w-full">
+  <h3 class="text-base font-semibold text-gray-900 mb-4">{titulo}</h3>
+  {descripcion && <p class="text-sm text-gray-500 mb-4 leading-relaxed">{descripcion}</p>}
   <canvas
     class="grafico-pastel"
     data-chart={chartData}
@@ -23,31 +23,7 @@ const chartData = JSON.stringify(datos)
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-pastel').forEach((canvas) => {
     const datos = JSON.parse(canvas.dataset.chart!)
-    const titulo = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    const titulo = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
     createPieChart(canvas, datos, titulo)
   })
 </script>
-
-<style>
-  .chart-container {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-    width: 100%;
-  }
-
-  h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-
-  .chart-desc {
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-</style>

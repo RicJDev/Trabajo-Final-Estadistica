@@ -12,13 +12,13 @@ const containerHeight = chartHeight + 100
 ---
 
 <div
-  class="chart-container"
+  class="bg-white border border-gray-200 rounded-lg p-6 w-full"
   style={`min-height: ${containerHeight}px`}
 >
-  <h3>{titulo}</h3>
-  {descripcion && <p class="chart-desc">{descripcion}</p>}
+  <h3 class="text-base font-semibold text-gray-900 mb-4">{titulo}</h3>
+  {descripcion && <p class="text-sm text-gray-500 mb-4 leading-relaxed">{descripcion}</p>}
   <div
-    class="chart-wrapper"
+    class="relative w-full"
     style={`height: ${chartHeight}px`}
   >
     <canvas
@@ -33,36 +33,7 @@ const containerHeight = chartHeight + 100
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-barras').forEach((canvas) => {
     const data = JSON.parse(canvas.dataset.chart!)
-    const title = canvas.closest('.chart-container')?.querySelector('h3')?.textContent ?? ''
+    const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
     createBarChart(canvas, data, title)
   })
 </script>
-
-<style>
-  .chart-container {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-    width: 100%;
-  }
-
-  .chart-wrapper {
-    position: relative;
-    width: 100%;
-  }
-
-  h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-
-  .chart-desc {
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-</style>
