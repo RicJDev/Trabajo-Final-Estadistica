@@ -165,7 +165,7 @@ export function createLineChart(canvas: HTMLCanvasElement, data: any[]) {
 export function createGroupedBarChart(
   canvas: HTMLCanvasElement,
   data: { labels: string[]; datasets: { label: string; data: number[]; color: string }[] },
-  title: string
+  title: string,
 ) {
   return new Chart(canvas, {
     type: 'bar',

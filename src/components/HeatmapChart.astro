@@ -29,11 +29,7 @@ function color(value: number): string {
       <thead>
         <tr>
           <th></th>
-          {
-            xLabels.map((xl) => (
-              <th>{xl}</th>
-            ))
-          }
+          {xLabels.map((xl) => <th>{xl}</th>)}
         </tr>
       </thead>
       <tbody>
@@ -41,13 +37,9 @@ function color(value: number): string {
           data.map((row, i) => (
             <tr>
               <th>{yLabels[i]}</th>
-              {
-                row.map((v) => (
-                  <td style={{ backgroundColor: color(v) }}>
-                    {v}
-                  </td>
-                ))
-              }
+              {row.map((v) => (
+                <td style={{ backgroundColor: color(v) }}>{v}</td>
+              ))}
             </tr>
           ))
         }

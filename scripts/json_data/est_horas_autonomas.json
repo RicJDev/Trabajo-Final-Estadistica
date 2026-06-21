@@ -5,10 +5,5 @@
     "De 6 a 10 horas",
     "Más de 10 horas"
   ],
-  "values": [
-    114,
-    37,
-    15,
-    6
-  ]
+  "values": [114, 37, 15, 6]
 }

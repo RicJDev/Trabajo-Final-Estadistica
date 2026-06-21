@@ -7,12 +7,5 @@
     "Entornos de sistemas operativos (Linux / Bash)",
     "Herramientas de automatización / CI-CD (Jenkins, GitHub Actions)"
   ],
-  "values": [
-    2,
-    1,
-    1,
-    1,
-    1,
-    1
-  ]
+  "values": [2, 1, 1, 1, 1, 1]
 }

@@ -11,10 +11,16 @@ const chartHeight = Math.max(250, datos.length * 28)
 const containerHeight = chartHeight + 100
 ---
 
-<div class="chart-container" style={`min-height: ${containerHeight}px`}>
+<div
+  class="chart-container"
+  style={`min-height: ${containerHeight}px`}
+>
   <h3>{titulo}</h3>
   {descripcion && <p class="chart-desc">{descripcion}</p>}
-  <div class="chart-wrapper" style={`height: ${chartHeight}px`}>
+  <div
+    class="chart-wrapper"
+    style={`height: ${chartHeight}px`}
+  >
     <canvas
       class="grafico-barras"
       data-chart={chartData}

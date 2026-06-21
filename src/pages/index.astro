@@ -23,13 +23,8 @@ function toEntries(labels: string[], values: number[]) {
 }
 
 function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
-  const main = data.labels
-    .map((label, i) => ({ label, value: data.values[i] }))
-    .filter((e) => e.value > 1)
-  const otherCount = data.values.reduce(
-    (sum, v) => (v === 1 ? sum + v : sum),
-    0,
-  )
+  const main = data.labels.map((label, i) => ({ label, value: data.values[i] })).filter((e) => e.value > 1)
+  const otherCount = data.values.reduce((sum, v) => (v === 1 ? sum + v : sum), 0)
   if (otherCount > 0) main.push({ label: 'Otra', value: otherCount })
   return main
 }
@@ -39,31 +34,78 @@ function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
   <Header slot="header" />
   <Footer slot="footer" />
 
-  <section id="inicio" class="hero">
+  <section
+    id="inicio"
+    class="hero"
+  >
     <h1>Resultados de la Encuesta AIS 2026</h1>
-    <p>Visualización de datos recolectados de los estudiantes del Área de Ingeniería en Sistemas (AIS) de la Universidad Nacional Experimental Rómulo Gallegos</p>
+    <p>
+      Visualización de datos recolectados de los estudiantes del Área de Ingeniería en Sistemas (AIS) de la Universidad
+      Nacional Experimental Rómulo Gallegos
+    </p>
   </section>
 
-  <section id="resumen" class="section">
+  <section
+    id="resumen"
+    class="section"
+  >
     <h2>Resumen</h2>
     <InsightsPanel insights={insights} />
   </section>
 
-  <section id="estudiantes" class="section">
+  <section
+    id="estudiantes"
+    class="section"
+  >
     <h2>Estudiantes</h2>
     <div class="grid-2">
-      <BarChart datos={toEntries(estLenguajes.labels, estLenguajes.values)} titulo="¿Qué lenguajes de programación estás estudiando o te interesa aprender activamente por tu cuenta?" descripcion="Python y JavaScript lideran como los lenguajes más populares entre los estudiantes, reflejando su versatilidad en desarrollo web, ciencia de datos y automatización." />
-      <BarChart datos={toEntries(estFrameworks.labels, estFrameworks.values)} titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?" descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno." />
-      <BarChart datos={toEntries(estAreaAspirada.labels, estAreaAspirada.values)} titulo="¿A qué área de la tecnología te gustaría dedicarte principalmente cuando te gradúes?" descripcion="El desarrollo de videojuegos y la ciberseguridad son las áreas que más atraen a los estudiantes, seguidas por el desarrollo fullstack." />
-      <BarChart datos={toEntries(estHorasAutonomas.labels, estHorasAutonomas.values)} titulo="¿Cuántas horas a la semana le dedicas a estudiar tecnología de forma autónoma?" descripcion="La mayoría de los estudiantes dedica entre 1 y 5 horas semanales al estudio autónomo, mientras que un grupo significativo solo cumple con las asignaciones universitarias." />
-      <PieChart datos={toEntries(estFactorEmpleo.labels, estFactorEmpleo.values)} titulo="¿Qué factor crees que será el más determinante para conseguir tu primer empleo en tecnología?" descripcion="El título universitario es considerado el factor más importante para conseguir empleo, seguido por el portafolio de proyectos personales." />
-      <PieChart datos={toEntries(estImpactoIa.labels, estImpactoIa.values)} titulo="¿Qué impacto crees que tendrá la Inteligencia Artificial en el rol profesional al que aspiras en los próximos 5 años?" descripcion="La gran mayoría cree que la IA será una herramienta obligatoria que aumentará la productividad sin reemplazar el rol del profesional." />
-      <PieChart datos={groupSinglesAsOther(estMetaGraduacion)} titulo="¿Cuál es tu meta principal a corto plazo tras graduarte?" descripcion="Trabajar de forma remota para una empresa extranjera es la meta principal, seguida por el emprendimiento, reflejando una visión global y orientada a la autonomía." />
-      <PieChart datos={toEntries(estFrecuenciaIa.labels, estFrecuenciaIa.values)} titulo="¿Con qué frecuencia utilizas asistentes de Inteligencia Artificial para resolver tareas de la universidad o aprender a programar?" descripcion="Más de la mitad de los estudiantes usa IA a diario como parte fundamental de su método de estudio, y un porcentaje considerable la usa ocasionalmente." />
+      <BarChart
+        datos={toEntries(estLenguajes.labels, estLenguajes.values)}
+        titulo="¿Qué lenguajes de programación estás estudiando o te interesa aprender activamente por tu cuenta?"
+        descripcion="Python y JavaScript lideran como los lenguajes más populares entre los estudiantes, reflejando su versatilidad en desarrollo web, ciencia de datos y automatización."
+      />
+      <BarChart
+        datos={toEntries(estFrameworks.labels, estFrameworks.values)}
+        titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?"
+        descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno."
+      />
+      <BarChart
+        datos={toEntries(estAreaAspirada.labels, estAreaAspirada.values)}
+        titulo="¿A qué área de la tecnología te gustaría dedicarte principalmente cuando te gradúes?"
+        descripcion="El desarrollo de videojuegos y la ciberseguridad son las áreas que más atraen a los estudiantes, seguidas por el desarrollo fullstack."
+      />
+      <BarChart
+        datos={toEntries(estHorasAutonomas.labels, estHorasAutonomas.values)}
+        titulo="¿Cuántas horas a la semana le dedicas a estudiar tecnología de forma autónoma?"
+        descripcion="La mayoría de los estudiantes dedica entre 1 y 5 horas semanales al estudio autónomo, mientras que un grupo significativo solo cumple con las asignaciones universitarias."
+      />
+      <PieChart
+        datos={toEntries(estFactorEmpleo.labels, estFactorEmpleo.values)}
+        titulo="¿Qué factor crees que será el más determinante para conseguir tu primer empleo en tecnología?"
+        descripcion="El título universitario es considerado el factor más importante para conseguir empleo, seguido por el portafolio de proyectos personales."
+      />
+      <PieChart
+        datos={toEntries(estImpactoIa.labels, estImpactoIa.values)}
+        titulo="¿Qué impacto crees que tendrá la Inteligencia Artificial en el rol profesional al que aspiras en los próximos 5 años?"
+        descripcion="La gran mayoría cree que la IA será una herramienta obligatoria que aumentará la productividad sin reemplazar el rol del profesional."
+      />
+      <PieChart
+        datos={groupSinglesAsOther(estMetaGraduacion)}
+        titulo="¿Cuál es tu meta principal a corto plazo tras graduarte?"
+        descripcion="Trabajar de forma remota para una empresa extranjera es la meta principal, seguida por el emprendimiento, reflejando una visión global y orientada a la autonomía."
+      />
+      <PieChart
+        datos={toEntries(estFrecuenciaIa.labels, estFrecuenciaIa.values)}
+        titulo="¿Con qué frecuencia utilizas asistentes de Inteligencia Artificial para resolver tareas de la universidad o aprender a programar?"
+        descripcion="Más de la mitad de los estudiantes usa IA a diario como parte fundamental de su método de estudio, y un porcentaje considerable la usa ocasionalmente."
+      />
     </div>
   </section>
 
-  <section id="heatmap" class="section">
+  <section
+    id="heatmap"
+    class="section"
+  >
     <h2>Heatmap: Lenguajes y Frameworks</h2>
     <div class="grid-1">
       <HeatmapChart
@@ -76,13 +118,41 @@ function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
     </div>
   </section>
 
-  <section id="sobre-nosotros" class="section">
+  <section
+    id="sobre-nosotros"
+    class="section"
+  >
     <h2>Sobre Nosotros</h2>
-    <p class="section-desc">Encuesta realizada por los estudiantes del Área de Ingeniería en Sistemas de la UNERG.</p>
+    <p class="section-desc">
+      Proyecto realizado para la cátedra de <strong>Probabilidad y Estadística</strong> del Programa de Ingeniería en Informática
+      de la UNERG (Sección 1).<br />
+      <strong>Profesora:</strong> Marisela Trujillo
+    </p>
+
     <div class="team-grid">
       <div class="team-card">
-        <h3>Ricardo J. Díaz</h3>
-        <p>Estudiante de Ingeniería en Sistemas</p>
+        <h3>Milagros Aponte</h3>
+        <p>C.I: 32.138.796</p>
+      </div>
+
+      <div class="team-card">
+        <h3>Luis Ávila</h3>
+        <p>C.I: 32.645.097</p>
+      </div>
+
+      <div class="team-card">
+        <h3>Rafael Benavides</h3>
+        <p>C.I: 32.288.289</p>
+      </div>
+
+      <div class="team-card">
+        <h3>Ricardo Marín</h3>
+        <p>C.I: 30.524.648</p>
+      </div>
+
+      <div class="team-card">
+        <h3>Bárbara Molina</h3>
+        <p>C.I: 32.020.361</p>
       </div>
     </div>
   </section>
