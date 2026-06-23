@@ -6,6 +6,7 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import BarChart from '../components/BarChart.astro'
 import PieChart from '../components/PieChart.astro'
+import GroupedBarChart from '../components/GroupedBarChart.astro'
 import HeatmapChart from '../components/HeatmapChart.astro'
 import InsightsPanel from '../components/InsightsPanel.astro'
 
@@ -23,8 +24,24 @@ const estHorasAutonomas = loadJSON('est_horas_autonomas.json')
 const estImpactoIa = loadJSON('est_impacto_ia.json')
 const estLenguajes = loadJSON('est_lenguajes.json')
 const estMetaGraduacion = loadJSON('est_meta_graduacion.json')
+const estSemestre = loadJSON('est_semestre.json')
 const heatmap = loadJSON('heatmap_lenguajes_frameworks.json')
 const insights = loadJSON('insights.json')
+
+const gradAnosGraduacion = loadJSON('grad_anos_graduacion.json')
+const gradTrabajaSector = loadJSON('grad_trabaja_sector.json')
+const gradRol = loadJSON('grad_rol.json')
+const gradTiempoEmpleo = loadJSON('grad_tiempo_empleo.json')
+const gradNivelIngles = loadJSON('grad_nivel_ingles.json')
+const gradFrecuenciaIa = loadJSON('grad_frecuencia_ia.json')
+const gradImpactoIa = loadJSON('grad_impacto_ia.json')
+const gradFactorSeleccion = loadJSON('grad_factor_seleccion.json')
+const gradLenguajes = loadJSON('grad_lenguajes.json')
+const gradFrameworks = loadJSON('grad_frameworks.json')
+
+const compLenguajes = loadJSON('comparativa_lenguajes.json')
+const compFrameworks = loadJSON('comparativa_frameworks.json')
+const compFrecuenciaIa = loadJSON('comparativa_frecuencia_ia.json')
 
 function toEntries(labels: string[], values: number[]) {
   return labels.map((label, i) => ({ label, value: values[i] }))
@@ -124,6 +141,101 @@ function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
         descripcion="La celda resaltada en azul más oscuro muestra la combinación más frecuente: Node.js con JavaScript, seguido de Python con Node.js y React con JavaScript. Esto confirma que el ecosistema JavaScript/Node.js es el más dominante entre los estudiantes."
       />
     </div>
+  </section>
+
+  <section
+    id="semestre"
+    class="max-w-6xl mx-auto px-6 py-8 pb-12"
+  >
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Distribución por Semestre</h2>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
+      <BarChart
+        datos={toEntries(estSemestre.labels, estSemestre.values)}
+        titulo="¿Qué año o semestre estás cursando actualmente?"
+        descripcion="La mayoría de los encuestados se concentra en los semestres intermedios (4to a 6to), con picos notables en 4to semestre y 2do semestre."
+      />
+    </div>
+  </section>
+
+  <section
+    id="egresados"
+    class="max-w-6xl mx-auto px-6 py-8 pb-12"
+  >
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Egresados</h2>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
+      <BarChart
+        datos={toEntries(gradRol.labels, gradRol.values)}
+        titulo="¿Cuál es tu rol o área de especialización principal?"
+        descripcion="Docencia/Divulgación y Gestión de Proyectos lideran entre los egresados, seguidos por Administración de Bases de Datos y Desarrollo Fullstack."
+      />
+      <BarChart
+        datos={toEntries(gradLenguajes.labels, gradLenguajes.values)}
+        titulo="¿Cuáles son los lenguajes principales que usas en tu día a día laboral?"
+        descripcion="JavaScript, Python y SQL son los lenguajes más usados por los egresados en el ámbito laboral, reflejando la demanda del mercado."
+      />
+      <BarChart
+        datos={toEntries(gradFrameworks.labels, gradFrameworks.values)}
+        titulo="¿Qué frameworks o librerías usas en tus proyectos profesionales?"
+        descripcion="Django y WordPress son los frameworks más utilizados por los egresados, seguidos por Laravel y AngularJS."
+      />
+      <BarChart
+        datos={toEntries(gradTiempoEmpleo.labels, gradTiempoEmpleo.values)}
+        titulo="¿Cuánto tiempo te tomó conseguir tu primer empleo tras egresar?"
+        descripcion="La mayoría de los egresados ya trabajaba en el área antes de graduarse o encontró empleo en menos de 3 meses."
+      />
+      <PieChart
+        datos={toEntries(gradTrabajaSector.labels, gradTrabajaSector.values)}
+        titulo="¿Trabajas actualmente en el sector tecnológico?"
+        descripcion="La gran mayoría de los egresados encuestados trabaja actualmente en el sector tecnológico."
+      />
+      <PieChart
+        datos={toEntries(gradNivelIngles.labels, gradNivelIngles.values)}
+        titulo="¿Qué nivel de inglés se requiere en tu puesto?"
+        descripcion="El nivel básico de inglés es el más requerido, seguido por el nivel intermedio."
+      />
+      <PieChart
+        datos={toEntries(gradFrecuenciaIa.labels, gradFrecuenciaIa.values)}
+        titulo="¿Con qué frecuencia usas herramientas de IA en tu trabajo?"
+        descripcion="El uso de IA está dividido entre uso diario y ocasional entre los egresados."
+      />
+      <PieChart
+        datos={toEntries(gradImpactoIa.labels, gradImpactoIa.values)}
+        titulo="¿Cómo describirías el impacto real de la IA en tu puesto?"
+        descripcion="La mayoría de los egresados reporta que la IA les permite asumir tareas más complejas."
+      />
+      <PieChart
+        datos={toEntries(gradFactorSeleccion.labels, gradFactorSeleccion.values)}
+        titulo="¿Qué factor fue el más determinante para que te seleccionaran?"
+        descripcion="La experiencia laboral previa o portafolio fue el factor más determinante, seguido por las pruebas técnicas."
+      />
+    </div>
+  </section>
+
+  <section
+    id="comparativas"
+    class="max-w-6xl mx-auto px-6 py-8 pb-12"
+  >
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Comparativas: Estudiantes vs Egresados</h2>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
+      <GroupedBarChart
+        labels={compLenguajes.labels}
+        datasets={compLenguajes.datasets}
+        titulo="Lenguajes de programación: estudiantes (estudian/aprenden) vs egresados (usan en el trabajo)"
+      />
+      <GroupedBarChart
+        labels={compFrameworks.labels}
+        datasets={compFrameworks.datasets}
+        titulo="Frameworks: estudiantes (interés en aprender) vs egresados (usan en el trabajo)"
+      />
+      <GroupedBarChart
+        labels={compFrecuenciaIa.labels}
+        datasets={compFrecuenciaIa.datasets}
+        titulo="Frecuencia de uso de IA: estudiantes vs egresados"
+      />
+    </div>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Los valores muestran el porcentaje de cada grupo que seleccionó cada opción.
+    </p>
   </section>
 
   <section

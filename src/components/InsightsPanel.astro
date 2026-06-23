@@ -39,39 +39,27 @@ const e = insights.estudiantes
     >Framework más popular — {e.top_frameworks[0]?.count} respuestas</InsightBlock
   >
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_areas[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Área más aspirada — {e.top_areas[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={e.top_areas[0]?.label}>
+    Área más aspirada — {e.top_areas[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.uso_diario_ia_pct}%</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Usan IA a diario</span>
-  </div>
+  <InsightBlock highlighted={`${e.uso_diario_ia_pct}%`}>
+    Usan IA a diario
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.impacto_positivo_ia_pct}%</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Creen que IA será herramienta obligatoria</span>
-  </div>
+  <InsightBlock highlighted={`${e.impacto_positivo_ia_pct}%`}>
+    Creen que IA será herramienta obligatoria
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.meta_graduacion[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed"
-      >Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas</span
-    >
-  </div>
+  <InsightBlock highlighted={e.meta_graduacion[0]?.label}>
+    Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.factor_empleo[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed"
-      >Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas</span
-    >
-  </div>
+  <InsightBlock highlighted={e.factor_empleo[0]?.label}>
+    Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.distribucion_horas[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed"
-      >Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas</span
-    >
-  </div>
+  <InsightBlock highlighted={e.distribucion_horas[0]?.label}>
+    Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas
+  </InsightBlock>
 </div>

@@ -51,6 +51,7 @@ function truncateLabel(text: string, max = 30): string {
 }
 
 export function createBarChart(canvas: HTMLCanvasElement, data: Record<string, string>[], title: string) {
+  Chart.getChart(canvas)?.destroy()
   return new Chart(canvas, {
     type: 'bar',
     data: {
@@ -167,6 +168,7 @@ export function createGroupedBarChart(
   data: { labels: string[]; datasets: { label: string; data: number[]; color: string }[] },
   title: string,
 ) {
+  Chart.getChart(canvas)?.destroy()
   return new Chart(canvas, {
     type: 'bar',
     data: {
@@ -188,18 +190,17 @@ export function createGroupedBarChart(
         legend: { position: 'bottom' },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x} respuestas`,
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x}%`,
           },
         },
       },
       scales: {
         x: {
           beginAtZero: true,
-          stacked: true,
-          ticks: { stepSize: 1 },
+          max: 100,
+          ticks: { stepSize: 10 },
         },
         y: {
-          stacked: true,
           ticks: {
             autoSkip: false,
             callback(_value, _index, _ticks) {

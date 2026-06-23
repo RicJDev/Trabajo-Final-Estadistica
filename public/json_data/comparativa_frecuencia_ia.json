@@ -1,0 +1,27 @@
+{
+  "labels": [
+    "Diariamente",
+    "Ocasionalmente",
+    "Rara vez / Nunca"
+  ],
+  "datasets": [
+    {
+      "label": "Estudiantes",
+      "data": [
+        49.8,
+        39.2,
+        11.1
+      ],
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Egresados",
+      "data": [
+        44.4,
+        55.6,
+        0.0
+      ],
+      "color": "#10b981"
+    }
+  ]
+}

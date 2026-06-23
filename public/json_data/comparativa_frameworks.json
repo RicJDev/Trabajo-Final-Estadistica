@@ -1,0 +1,63 @@
+{
+  "labels": [
+    "Node.js",
+    "Otro",
+    "Express",
+    "React",
+    "Next.js",
+    "Django",
+    "WordPress",
+    "FastAPI",
+    "AngularJS",
+    "Angular",
+    "Phoenix",
+    "jQuery",
+    "NestJS",
+    "Laravel",
+    "Vue.js"
+  ],
+  "datasets": [
+    {
+      "label": "Estudiantes",
+      "data": [
+        46.1,
+        30.0,
+        24.9,
+        23.5,
+        21.2,
+        14.3,
+        11.5,
+        12.0,
+        10.1,
+        9.7,
+        8.3,
+        6.0,
+        7.4,
+        5.1,
+        5.5
+      ],
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Egresados",
+      "data": [
+        16.7,
+        38.9,
+        5.6,
+        11.1,
+        11.1,
+        38.9,
+        38.9,
+        5.6,
+        22.2,
+        11.1,
+        0.0,
+        22.2,
+        5.6,
+        27.8,
+        11.1
+      ],
+      "color": "#10b981"
+    }
+  ]
+}

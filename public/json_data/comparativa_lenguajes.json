@@ -1,0 +1,63 @@
+{
+  "labels": [
+    "Python",
+    "JavaScript",
+    "C++",
+    "SQL",
+    "Java",
+    "TypeScript",
+    "Otro",
+    "PHP",
+    "C#",
+    "PowerShell",
+    "C",
+    "GDScript",
+    "Bash/Shell",
+    "Kotlin",
+    "Rust"
+  ],
+  "datasets": [
+    {
+      "label": "Estudiantes",
+      "data": [
+        62.2,
+        61.8,
+        42.9,
+        26.7,
+        21.7,
+        18.9,
+        15.2,
+        13.4,
+        9.7,
+        7.4,
+        6.9,
+        6.5,
+        5.5,
+        5.1,
+        4.6
+      ],
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Egresados",
+      "data": [
+        61.1,
+        61.1,
+        22.2,
+        61.1,
+        33.3,
+        16.7,
+        27.8,
+        44.4,
+        0.0,
+        5.6,
+        5.6,
+        0.0,
+        0.0,
+        5.6,
+        0.0
+      ],
+      "color": "#10b981"
+    }
+  ]
+}

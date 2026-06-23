@@ -1,0 +1,10 @@
+{
+  "labels": [
+    "Ocasionalmente (Para consultas puntuales, revisión de errores o refactorización)",
+    "Diariamente (Están completamente integradas en mi flujo de trabajo regular)"
+  ],
+  "values": [
+    10,
+    8
+  ]
+}
