@@ -13,7 +13,7 @@ def camel_to_snake(name):
 
 
 DATA_DIR = os.path.join(BASE_DIR, "data")
-OUTPUT_DIR = os.path.join(BASE_DIR, "json_data")
+OUTPUT_DIR = os.path.join(os.path.dirname(BASE_DIR), "public", "json_data")
 
 STUDENTS_RAW = os.path.join(DATA_DIR, "raw_students_responses.json")
 

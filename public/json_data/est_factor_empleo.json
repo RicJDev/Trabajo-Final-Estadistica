@@ -1,0 +1,18 @@
+{
+  "labels": [
+    "El título universitario de nuestra institución",
+    "Mi portafolio de proyectos personales / repositorio de GitHub",
+    "El dominio del idioma inglés y habilidades blandas",
+    "Certificaciones externas de la industria (AWS, Cisco, Scrum, etc.)",
+    "No estoy seguro / no lo sé aún",
+    "Otro"
+  ],
+  "values": [
+    71,
+    60,
+    29,
+    25,
+    22,
+    10
+  ]
+}

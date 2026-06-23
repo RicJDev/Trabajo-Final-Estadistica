@@ -1,0 +1,171 @@
+{
+  "estudiantes": {
+    "total": 217,
+    "top_lenguajes": [
+      {
+        "label": "Python",
+        "count": 135
+      },
+      {
+        "label": "JavaScript",
+        "count": 132
+      },
+      {
+        "label": "C++",
+        "count": 92
+      },
+      {
+        "label": "SQL",
+        "count": 57
+      },
+      {
+        "label": "Java",
+        "count": 47
+      }
+    ],
+    "top_frameworks": [
+      {
+        "label": "Node.js",
+        "count": 98
+      },
+      {
+        "label": "Otro",
+        "count": 65
+      },
+      {
+        "label": "Express",
+        "count": 54
+      },
+      {
+        "label": "React",
+        "count": 50
+      },
+      {
+        "label": "Next.js",
+        "count": 46
+      }
+    ],
+    "top_areas": [
+      {
+        "label": "Desarrollo de videojuegos",
+        "count": 34
+      },
+      {
+        "label": "Ciberseguridad / Pen Testing",
+        "count": 33
+      },
+      {
+        "label": "Desarrollo Fullstack",
+        "count": 29
+      },
+      {
+        "label": "No estoy seguro",
+        "count": 27
+      },
+      {
+        "label": "Redes / Infraestructura",
+        "count": 24
+      }
+    ],
+    "distribucion_horas": [
+      {
+        "label": "De 1 a 5 horas",
+        "count": 145
+      },
+      {
+        "label": "0 horas (solo cumplo con las asignaciones de la universidad)",
+        "count": 41
+      },
+      {
+        "label": "De 6 a 10 horas",
+        "count": 19
+      },
+      {
+        "label": "Más de 10 horas",
+        "count": 12
+      }
+    ],
+    "factor_empleo": [
+      {
+        "label": "El título universitario de nuestra institución",
+        "count": 71
+      },
+      {
+        "label": "Mi portafolio de proyectos personales / repositorio de GitHub",
+        "count": 60
+      },
+      {
+        "label": "El dominio del idioma inglés y habilidades blandas",
+        "count": 29
+      },
+      {
+        "label": "Certificaciones externas de la industria (AWS, Cisco, Scrum, etc.)",
+        "count": 25
+      },
+      {
+        "label": "No estoy seguro / no lo sé aún",
+        "count": 22
+      }
+    ],
+    "impacto_ia": [
+      {
+        "label": "Será una herramienta obligatoria que aumentará la productividad, pero no reemplazará el rol",
+        "count": 173
+      },
+      {
+        "label": "Reemplazará gran parte del trabajo humano en esa área",
+        "count": 19
+      },
+      {
+        "label": "Tendrá un impacto menor, las bases del trabajo seguirán siendo las mismas",
+        "count": 15
+      },
+      {
+        "label": "No estoy seguro(a)",
+        "count": 10
+      }
+    ],
+    "frecuencia_ia": [
+      {
+        "label": "Diariamente (Es parte fundamental de mi método de estudio)",
+        "count": 108
+      },
+      {
+        "label": "Ocasionalmente (1 o 2 veces por semana)",
+        "count": 85
+      },
+      {
+        "label": "Rara vez (1 o 2 veces al mes)",
+        "count": 20
+      },
+      {
+        "label": "Nunca",
+        "count": 4
+      }
+    ],
+    "meta_graduacion": [
+      {
+        "label": "Trabajar de forma remota para una empresa extranjera",
+        "count": 77
+      },
+      {
+        "label": "Crear mi propia empresa / Emprender",
+        "count": 63
+      },
+      {
+        "label": "Trabajar en una empresa local (presencial o híbrido)",
+        "count": 39
+      },
+      {
+        "label": "No lo sé / Estoy indeciso(a)",
+        "count": 23
+      },
+      {
+        "label": "Dedicarme a la investigación o academia (Maestría / Doctorado)",
+        "count": 10
+      }
+    ],
+    "uso_diario_ia_pct": 49.8,
+    "impacto_positivo_ia_pct": 79.7
+  }
+}

@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs'
+import path from 'node:path'
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -7,16 +9,22 @@ import PieChart from '../components/PieChart.astro'
 import HeatmapChart from '../components/HeatmapChart.astro'
 import InsightsPanel from '../components/InsightsPanel.astro'
 
-import estAreaAspirada from '../../scripts/json_data/est_area_aspirada.json'
-import estFactorEmpleo from '../../scripts/json_data/est_factor_empleo.json'
-import estFrameworks from '../../scripts/json_data/est_frameworks.json'
-import estFrecuenciaIa from '../../scripts/json_data/est_frecuencia_ia.json'
-import estHorasAutonomas from '../../scripts/json_data/est_horas_autonomas.json'
-import estImpactoIa from '../../scripts/json_data/est_impacto_ia.json'
-import estLenguajes from '../../scripts/json_data/est_lenguajes.json'
-import estMetaGraduacion from '../../scripts/json_data/est_meta_graduacion.json'
-import heatmap from '../../scripts/json_data/heatmap_lenguajes_frameworks.json'
-import insights from '../../scripts/json_data/insights.json'
+const DATA_DIR = path.resolve('public/json_data')
+
+function loadJSON(filename: string) {
+  return JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), 'utf-8'))
+}
+
+const estAreaAspirada = loadJSON('est_area_aspirada.json')
+const estFactorEmpleo = loadJSON('est_factor_empleo.json')
+const estFrameworks = loadJSON('est_frameworks.json')
+const estFrecuenciaIa = loadJSON('est_frecuencia_ia.json')
+const estHorasAutonomas = loadJSON('est_horas_autonomas.json')
+const estImpactoIa = loadJSON('est_impacto_ia.json')
+const estLenguajes = loadJSON('est_lenguajes.json')
+const estMetaGraduacion = loadJSON('est_meta_graduacion.json')
+const heatmap = loadJSON('heatmap_lenguajes_frameworks.json')
+const insights = loadJSON('insights.json')
 
 function toEntries(labels: string[], values: number[]) {
   return labels.map((label, i) => ({ label, value: values[i] }))
