@@ -8,9 +8,11 @@ export interface Props {
 
 const { insights } = Astro.props
 const e = insights.estudiantes
+const g = insights.egresados
 ---
 
-<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
+<h3 class="text-lg font-semibold text-gray-900 mb-3">Estudiantes</h3>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mb-8">
   <InsightBlock
     blue
     highlighted={e.total}
@@ -18,7 +20,7 @@ const e = insights.estudiantes
   >
 
   <InsightBlock highlighted={e.top_lenguajes[0]?.label}>
-    Lenguaje más popular - {e.top_lenguajes[0]?.count} respuestas
+    Lenguaje más popular — {e.top_lenguajes[0]?.count} respuestas
   </InsightBlock>
 
   <InsightBlock highlighted={e.top_frameworks[0]?.label}>
@@ -42,5 +44,42 @@ const e = insights.estudiantes
 
   <InsightBlock highlighted={e.distribucion_horas[0]?.label}>
     Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas
+  </InsightBlock>
+</div>
+
+<h3 class="text-lg font-semibold text-gray-900 mb-3">Egresados</h3>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
+  <InsightBlock
+    blue
+    highlighted={g.total}
+    >Egresados encuestados</InsightBlock
+  >
+
+  <InsightBlock highlighted={g.top_lenguajes[0]?.label}>
+    Lenguaje más usado en el trabajo — {g.top_lenguajes[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={g.top_frameworks[0]?.label}>
+    Framework más usado — {g.top_frameworks[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={g.top_rol[0]?.label}>
+    Rol más común — {g.top_rol[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={g.top_factor_seleccion[0]?.label}>
+    Factor principal de contratación
+  </InsightBlock>
+
+  <InsightBlock highlighted={`${g.trabaja_sector_pct}%`}>
+    Trabaja en el sector de TI
+  </InsightBlock>
+
+  <InsightBlock highlighted={`${g.usa_ia_diario_pct}%`}>
+    Usa IA a diario en el trabajo
+  </InsightBlock>
+
+  <InsightBlock highlighted={g.top_nivel_ingles[0]?.label}>
+    Nivel de inglés más requerido — {g.top_nivel_ingles[0]?.count} respuestas
   </InsightBlock>
 </div>

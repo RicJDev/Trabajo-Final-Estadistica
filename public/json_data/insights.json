@@ -167,5 +167,162 @@
     ],
     "uso_diario_ia_pct": 49.8,
     "impacto_positivo_ia_pct": 79.7
+  },
+  "egresados": {
+    "total": 18,
+    "top_lenguajes": [
+      {
+        "label": "JavaScript",
+        "count": 11
+      },
+      {
+        "label": "Python",
+        "count": 11
+      },
+      {
+        "label": "SQL",
+        "count": 11
+      },
+      {
+        "label": "PHP",
+        "count": 8
+      },
+      {
+        "label": "Java",
+        "count": 6
+      }
+    ],
+    "top_frameworks": [
+      {
+        "label": "Django",
+        "count": 7
+      },
+      {
+        "label": "WordPress",
+        "count": 7
+      },
+      {
+        "label": "Otro",
+        "count": 7
+      },
+      {
+        "label": "Laravel",
+        "count": 5
+      },
+      {
+        "label": "AngularJS",
+        "count": 4
+      }
+    ],
+    "top_rol": [
+      {
+        "label": "Docencia / Divulgación",
+        "count": 4
+      },
+      {
+        "label": "Gestión de Proyectos / Project Manager",
+        "count": 4
+      },
+      {
+        "label": "Otra",
+        "count": 3
+      },
+      {
+        "label": "Administración de Bases de Datos",
+        "count": 2
+      },
+      {
+        "label": "Desarrollo Fullstack",
+        "count": 2
+      }
+    ],
+    "top_factor_seleccion": [
+      {
+        "label": "Mi experiencia laboral previa o portafolio de proyectos independientes",
+        "count": 9
+      },
+      {
+        "label": "El rendimiento demostrado en las pruebas técnicas del proceso",
+        "count": 3
+      },
+      {
+        "label": "El título universitario obtenido",
+        "count": 3
+      },
+      {
+        "label": "Certificaciones externas de la industria (AWS, Cisco, Scrum, etc.)",
+        "count": 2
+      },
+      {
+        "label": "Mi nivel de inglés y habilidades de comunicación (habilidades blandas)",
+        "count": 1
+      }
+    ],
+    "top_tiempo_empleo": [
+      {
+        "label": "Ya me encontraba trabajando en el área antes de graduarme",
+        "count": 8
+      },
+      {
+        "label": "Más de un año",
+        "count": 6
+      },
+      {
+        "label": "Menos de 3 meses",
+        "count": 2
+      },
+      {
+        "label": "De 3 a 6 meses",
+        "count": 1
+      },
+      {
+        "label": "De 7 a 12 meses",
+        "count": 1
+      }
+    ],
+    "top_nivel_ingles": [
+      {
+        "label": "Básico",
+        "count": 10
+      },
+      {
+        "label": "Intermedio",
+        "count": 4
+      },
+      {
+        "label": "Avanzado / Nativo",
+        "count": 2
+      },
+      {
+        "label": "No se requiere",
+        "count": 2
+      }
+    ],
+    "frecuencia_ia": [
+      {
+        "label": "Ocasionalmente (Para consultas puntuales, revisión de errores o refactorización)",
+        "count": 10
+      },
+      {
+        "label": "Diariamente (Están completamente integradas en mi flujo de trabajo regular)",
+        "count": 8
+      }
+    ],
+    "impacto_ia": [
+      {
+        "label": "Me permite asumir tareas más complejas que antes requerían más investigación",
+        "count": 12
+      },
+      {
+        "label": "Me permite resolver las mismas tareas técnicas en mucho menos tiempo",
+        "count": 3
+      },
+      {
+        "label": "No ha tenido un impacto significativo en mi rutina diaria",
+        "count": 3
+      }
+    ],
+    "trabaja_sector_pct": 88.9,
+    "usa_ia_diario_pct": 44.4
   }
 }

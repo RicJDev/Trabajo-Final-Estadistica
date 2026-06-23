@@ -3,13 +3,14 @@ import type { BarChartProps } from '../types'
 
 type Props = BarChartProps
 
-const { datos, titulo, descripcion } = Astro.props
+const { datos, titulo, descripcion, id } = Astro.props
 const chartData = JSON.stringify(datos)
 const chartHeight = Math.max(250, datos.length * 28)
 const containerHeight = chartHeight + 100
 ---
 
 <div
+  id={id}
   class="bg-white border border-gray-200 rounded-lg p-6 w-full"
   style={`min-height: ${containerHeight}px`}
 >
@@ -30,9 +31,15 @@ const containerHeight = chartHeight + 100
   import { createBarChart } from '../utils/createChart'
   import type { DataPoint } from '../types'
 
-  document.querySelectorAll<HTMLCanvasElement>('.grafico-barras').forEach((canvas) => {
-    const data = JSON.parse(canvas.dataset.chart!) as DataPoint[]
-    const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
-    createBarChart(canvas, data, title)
-  })
+  function initBarCharts() {
+    document.querySelectorAll<HTMLCanvasElement>('.grafico-barras').forEach((canvas) => {
+      if (canvas.dataset.inited) return
+      canvas.dataset.inited = 'true'
+      const data = JSON.parse(canvas.dataset.chart!) as DataPoint[]
+      const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
+      createBarChart(canvas, data, title)
+    })
+  }
+
+  document.addEventListener('astro:page-load', initBarCharts)
 </script>

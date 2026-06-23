@@ -15,7 +15,6 @@
     "check": "prettier --check ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^7.0.0",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.3",
     "chart.js": "^4.5.1",

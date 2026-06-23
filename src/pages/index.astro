@@ -4,78 +4,10 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import HeroSection from '../components/sections/HeroSection.astro'
 import ResumenSection from '../components/sections/ResumenSection.astro'
-import EstudiantesSection from '../components/sections/EstudiantesSection.astro'
-import HeatmapSection from '../components/sections/HeatmapSection.astro'
-import SemestreSection from '../components/sections/SemestreSection.astro'
-import EgresadosSection from '../components/sections/EgresadosSection.astro'
-import ComparativasSection from '../components/sections/ComparativasSection.astro'
-import SobreNosotrosSection from '../components/sections/SobreNosotrosSection.astro'
 import { loadJSON } from '../utils/data'
-import type {
-  LabelValueData,
-  HeatmapRawData,
-  StudentInsights,
-  ComparativeRawData,
-  StudentSectionData,
-  GraduateSectionData,
-  ComparativeSectionData,
-} from '../types'
+import type { StudentInsights } from '../types'
 
-const estAreaAspirada = loadJSON<LabelValueData>('est_area_aspirada.json')
-const estFactorEmpleo = loadJSON<LabelValueData>('est_factor_empleo.json')
-const estFrameworks = loadJSON<LabelValueData>('est_frameworks.json')
-const estFrecuenciaIa = loadJSON<LabelValueData>('est_frecuencia_ia.json')
-const estHorasAutonomas = loadJSON<LabelValueData>('est_horas_autonomas.json')
-const estImpactoIa = loadJSON<LabelValueData>('est_impacto_ia.json')
-const estLenguajes = loadJSON<LabelValueData>('est_lenguajes.json')
-const estMetaGraduacion = loadJSON<LabelValueData>('est_meta_graduacion.json')
-const estSemestre = loadJSON<LabelValueData>('est_semestre.json')
-const heatmap = loadJSON<HeatmapRawData>('heatmap_lenguajes_frameworks.json')
 const insights = loadJSON<StudentInsights>('insights.json')
-
-const gradAnosGraduacion = loadJSON<LabelValueData>('grad_anos_graduacion.json')
-const gradTrabajaSector = loadJSON<LabelValueData>('grad_trabaja_sector.json')
-const gradRol = loadJSON<LabelValueData>('grad_rol.json')
-const gradTiempoEmpleo = loadJSON<LabelValueData>('grad_tiempo_empleo.json')
-const gradNivelIngles = loadJSON<LabelValueData>('grad_nivel_ingles.json')
-const gradFrecuenciaIa = loadJSON<LabelValueData>('grad_frecuencia_ia.json')
-const gradImpactoIa = loadJSON<LabelValueData>('grad_impacto_ia.json')
-const gradFactorSeleccion = loadJSON<LabelValueData>('grad_factor_seleccion.json')
-const gradLenguajes = loadJSON<LabelValueData>('grad_lenguajes.json')
-const gradFrameworks = loadJSON<LabelValueData>('grad_frameworks.json')
-
-const compLenguajes = loadJSON<ComparativeRawData>('comparativa_lenguajes.json')
-const compFrameworks = loadJSON<ComparativeRawData>('comparativa_frameworks.json')
-const compFrecuenciaIa = loadJSON<ComparativeRawData>('comparativa_frecuencia_ia.json')
-
-const studentData: StudentSectionData = {
-  lenguajes: estLenguajes,
-  frameworks: estFrameworks,
-  areaAspirada: estAreaAspirada,
-  horasAutonomas: estHorasAutonomas,
-  factorEmpleo: estFactorEmpleo,
-  impactoIa: estImpactoIa,
-  metaGraduacion: estMetaGraduacion,
-  frecuenciaIa: estFrecuenciaIa,
-}
-
-const graduateData: GraduateSectionData = {
-  rol: gradRol,
-  lenguajes: gradLenguajes,
-  frameworks: gradFrameworks,
-  tiempoEmpleo: gradTiempoEmpleo,
-  trabajaSector: gradTrabajaSector,
-  nivelIngles: gradNivelIngles,
-  frecuenciaIa: gradFrecuenciaIa,
-  impactoIa: gradImpactoIa,
-  factorSeleccion: gradFactorSeleccion,
-}
-
-const comparativeData: ComparativeSectionData = {
-  lenguajes: compLenguajes,
-  frameworks: compFrameworks,
-  frecuenciaIa: compFrecuenciaIa,
-}
 ---
 
 <Layout>
@@ -84,10 +16,4 @@ const comparativeData: ComparativeSectionData = {
 
   <HeroSection />
   <ResumenSection insights={insights} />
-  <EstudiantesSection data={studentData} />
-  <HeatmapSection heatmap={heatmap} />
-  <SemestreSection data={estSemestre} />
-  <EgresadosSection data={graduateData} />
-  <ComparativasSection data={comparativeData} />
-  <SobreNosotrosSection />
 </Layout>

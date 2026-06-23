@@ -1,9 +1,27 @@
 ---
 import { Image } from 'astro:assets'
 import UNERGLogo from '../assets/logo-unerg.png'
+
+const base = import.meta.env.BASE_URL
+const path = Astro.url.pathname
+
+const navItems = [
+  { href: base, label: 'Inicio' },
+  { href: `${base}estudiantes/`, label: 'Estudiantes' },
+  { href: `${base}egresados/`, label: 'Egresados' },
+  { href: `${base}comparativa/`, label: 'Comparativa' },
+  { href: `${base}sobre-nosotros/`, label: 'Sobre Nosotros' },
+]
+
+function isActive(itemHref: string) {
+  if (itemHref === base) {
+    return path === base || path === base.slice(0, -1)
+  }
+  return path.startsWith(itemHref)
+}
 ---
 
-<header class="sticky top-0 z-100 bg-white border-b border-gray-200">
+<header class="sticky top-0 z-100 bg-white border-b border-gray-200" transition:persist>
   <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 gap-4">
     <div class="flex items-center gap-2">
       <button
@@ -42,52 +60,26 @@ import UNERGLogo from '../assets/logo-unerg.png'
         </svg>
       </button>
       <a
-        href="#inicio"
+        href={base}
         class="text-lg font-bold text-gray-900 no-underline whitespace-nowrap"
         >Encuesta AIS 2026</a
       >
     </div>
-    <nav class="hidden md:flex gap-3 flex-wrap">
-      <a
-        href="#inicio"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Inicio</a
-      >
-      <a
-        href="#resumen"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Resumen</a
-      >
-      <a
-        href="#estudiantes"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Estudiantes</a
-      >
-      <a
-        href="#heatmap"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Heatmap</a
-      >
-      <a
-        href="#semestre"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Semestre</a
-      >
-      <a
-        href="#egresados"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Egresados</a
-      >
-      <a
-        href="#comparativas"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Comparativas</a
-      >
-      <a
-        href="#sobre-nosotros"
-        class="text-sm text-gray-600 no-underline px-2 py-1 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Sobre Nosotros</a
-      >
+    <nav class="hidden md:flex gap-1 flex-wrap">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm no-underline px-2 py-1 rounded transition hover:bg-gray-100"
+            class:list={[
+              isActive(item.href) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900',
+            ]}
+            data-nav
+          >
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
     <Image
       src={UNERGLogo}
@@ -100,46 +92,20 @@ import UNERGLogo from '../assets/logo-unerg.png'
     class="md:hidden overflow-hidden transition-all duration-300 max-h-0"
   >
     <nav class="flex flex-col gap-1 px-6 pb-4 pt-2 border-t border-gray-100">
-      <a
-        href="#inicio"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Inicio</a
-      >
-      <a
-        href="#resumen"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Resumen</a
-      >
-      <a
-        href="#estudiantes"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Resultados</a
-      >
-      <a
-        href="#heatmap"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Heatmap</a
-      >
-      <a
-        href="#semestre"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Semestre</a
-      >
-      <a
-        href="#egresados"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Egresados</a
-      >
-      <a
-        href="#comparativas"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Comparativas</a
-      >
-      <a
-        href="#sobre-nosotros"
-        class="text-sm text-gray-600 no-underline px-3 py-2 rounded transition hover:bg-gray-100 hover:text-gray-900"
-        >Sobre Nosotros</a
-      >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm no-underline px-3 py-2 rounded transition hover:bg-gray-100"
+            class:list={[
+              isActive(item.href) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900',
+            ]}
+            data-nav
+          >
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
   </div>
 </header>
@@ -170,4 +136,23 @@ import UNERGLogo from '../assets/logo-unerg.png'
       iconClose?.classList.add('hidden')
     })
   })
+
+  function updateActiveNav() {
+    const firstLink = document.querySelector('[data-nav]')
+    const base = firstLink?.getAttribute('href') ?? '/'
+    const path = window.location.pathname
+
+    document.querySelectorAll('[data-nav]').forEach((link) => {
+      const href = link.getAttribute('href') ?? ''
+      const isActive = href === base
+        ? path === base || path === base.replace(/\/$/, '')
+        : path.startsWith(href)
+
+      link.classList.toggle('text-gray-900', isActive)
+      link.classList.toggle('bg-gray-100', isActive)
+      link.classList.toggle('text-gray-600', !isActive)
+    })
+  }
+
+  document.addEventListener('astro:page-load', updateActiveNav)
 </script>

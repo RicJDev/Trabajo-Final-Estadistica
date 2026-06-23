@@ -15,6 +15,7 @@ export type {
   ComparativeDataset,
   ComparativeRawData,
   StudentInsights,
+  GraduateInsights,
   StudentSectionData,
   GraduateSectionData,
   ComparativeSectionData,

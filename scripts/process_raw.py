@@ -163,6 +163,39 @@ def build_heatmap(student_responses):
     print(f"  Saved {path}")
 
 
+def build_graduate_insights(graduate_counts, graduate_responses):
+    insights = {}
+
+    def top_n(counter, n=5):
+        return [{"label": k, "count": v} for k, v in counter.most_common(n)]
+
+    total_grad = len(graduate_responses)
+
+    trabaja_sector = graduate_counts.get("37b9dc70", Counter()).get("Sí", 0)
+    usa_ia_diario = graduate_counts.get("7a5496a6", Counter()).get(
+        "Diariamente (Están completamente integradas en mi flujo de trabajo regular)", 0
+    )
+
+    insights["egresados"] = {
+        "total": total_grad,
+        "top_lenguajes": top_n(graduate_counts.get("7c745229", Counter())),
+        "top_frameworks": top_n(graduate_counts.get("69842ab6", Counter())),
+        "top_rol": top_n(graduate_counts.get("028a9705", Counter())),
+        "top_factor_seleccion": top_n(graduate_counts.get("57068564", Counter())),
+        "top_tiempo_empleo": top_n(graduate_counts.get("5e9090b4", Counter())),
+        "top_nivel_ingles": top_n(graduate_counts.get("532b020d", Counter())),
+        "frecuencia_ia": top_n(graduate_counts.get("7a5496a6", Counter())),
+        "impacto_ia": top_n(graduate_counts.get("2524b367", Counter())),
+        "trabaja_sector_pct": round(
+            (trabaja_sector / total_grad) * 100, 1
+        ) if total_grad else 0,
+        "usa_ia_diario_pct": round(
+            (usa_ia_diario / total_grad) * 100, 1
+        ) if total_grad else 0,
+    }
+    return insights
+
+
 def build_insights(student_counts, student_responses):
     insights = {}
 
@@ -196,10 +229,7 @@ def build_insights(student_counts, student_responses):
         ) if total_est else 0,
     }
 
-    path = os.path.join(OUTPUT_DIR, "insights.json")
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(insights, f, indent=2, ensure_ascii=False)
-    print(f"  Saved {path}")
+    return insights
 
 
 def main():
@@ -219,7 +249,7 @@ def main():
     build_heatmap(student_responses)
 
     print("Generating student insights...")
-    build_insights(student_counts, student_responses)
+    insights = build_insights(student_counts, student_responses)
 
     print("\nGenerating graduate charts...")
     graduate_responses = load_data(GRADUATES_RAW)
@@ -229,6 +259,15 @@ def main():
         labels = [k for k, _ in counter.most_common()]
         values = [v for _, v in counter.most_common()]
         save_chart_data(f"{name}.json", labels, values)
+
+    print("\nGenerating graduate insights...")
+    grad_insights = build_graduate_insights(graduate_counts, graduate_responses)
+    insights.update(grad_insights)
+
+    path = os.path.join(OUTPUT_DIR, "insights.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(insights, f, indent=2, ensure_ascii=False)
+    print(f"  Saved {path}")
 
     print("\nGenerating comparison charts...")
     total_est = len(student_responses)

@@ -23,6 +23,20 @@ export interface ComparativeRawData {
   datasets: ComparativeDataset[]
 }
 
+export interface GraduateInsights {
+  total: number
+  top_lenguajes: DataPoint[]
+  top_frameworks: DataPoint[]
+  top_rol: DataPoint[]
+  top_factor_seleccion: DataPoint[]
+  top_tiempo_empleo: DataPoint[]
+  top_nivel_ingles: DataPoint[]
+  frecuencia_ia: DataPoint[]
+  impacto_ia: DataPoint[]
+  trabaja_sector_pct: number
+  usa_ia_diario_pct: number
+}
+
 export interface StudentInsights {
   estudiantes: {
     total: number
@@ -37,9 +51,11 @@ export interface StudentInsights {
     uso_diario_ia_pct: number
     impacto_positivo_ia_pct: number
   }
+  egresados: GraduateInsights
 }
 
 export interface StudentSectionData {
+  semestre: LabelValueData
   lenguajes: LabelValueData
   frameworks: LabelValueData
   areaAspirada: LabelValueData
@@ -48,6 +64,7 @@ export interface StudentSectionData {
   impactoIa: LabelValueData
   metaGraduacion: LabelValueData
   frecuenciaIa: LabelValueData
+  heatmap: HeatmapRawData
 }
 
 export interface GraduateSectionData {

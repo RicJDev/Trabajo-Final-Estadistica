@@ -13,18 +13,21 @@ export interface BarChartProps {
   datos: DataPoint[]
   titulo: string
   descripcion?: string
+  id?: string
 }
 
 export interface PieChartProps {
   datos: DataPoint[]
   titulo: string
   descripcion?: string
+  id?: string
 }
 
 export interface GroupedBarChartProps {
   labels: string[]
   datasets: ChartDataset[]
   titulo: string
+  id?: string
 }
 
 export interface HeatmapChartProps {
@@ -33,6 +36,7 @@ export interface HeatmapChartProps {
   data: number[][]
   titulo: string
   descripcion?: string
+  id?: string
 }
 
 export interface LineChartProps {

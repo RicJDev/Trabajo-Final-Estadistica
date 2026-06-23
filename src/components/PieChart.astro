@@ -3,11 +3,11 @@ import type { PieChartProps } from '../types'
 
 type Props = PieChartProps
 
-const { datos, titulo, descripcion } = Astro.props
+const { datos, titulo, descripcion, id } = Astro.props
 const chartData = JSON.stringify(datos)
 ---
 
-<div class="bg-white border border-gray-200 rounded-lg p-6 w-full">
+<div id={id} class="bg-white border border-gray-200 rounded-lg p-6 w-full">
   <h3 class="text-base font-semibold text-gray-900 mb-4">{titulo}</h3>
   {descripcion && <p class="text-sm text-gray-500 mb-4 leading-relaxed">{descripcion}</p>}
   <canvas
@@ -20,9 +20,15 @@ const chartData = JSON.stringify(datos)
   import { createPieChart } from '../utils/createChart'
   import type { DataPoint } from '../types'
 
-  document.querySelectorAll<HTMLCanvasElement>('.grafico-pastel').forEach((canvas) => {
-    const datos = JSON.parse(canvas.dataset.chart!) as DataPoint[]
-    const titulo = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
-    createPieChart(canvas, datos, titulo)
-  })
+  function initPieCharts() {
+    document.querySelectorAll<HTMLCanvasElement>('.grafico-pastel').forEach((canvas) => {
+      if (canvas.dataset.inited) return
+      canvas.dataset.inited = 'true'
+      const datos = JSON.parse(canvas.dataset.chart!) as DataPoint[]
+      const titulo = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
+      createPieChart(canvas, datos, titulo)
+    })
+  }
+
+  document.addEventListener('astro:page-load', initPieCharts)
 </script>
