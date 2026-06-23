@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://your-username.github.io',
+  site: 'https://ricjdev.github.io',
   base: '/resultados-encuesta-ais-2026/',
   vite: {
     plugins: [tailwindcss()],
