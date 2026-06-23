@@ -1,57 +1,80 @@
 ---
-import fs from 'node:fs'
-import path from 'node:path'
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import BarChart from '../components/BarChart.astro'
-import PieChart from '../components/PieChart.astro'
-import GroupedBarChart from '../components/GroupedBarChart.astro'
-import HeatmapChart from '../components/HeatmapChart.astro'
-import InsightsPanel from '../components/InsightsPanel.astro'
+import HeroSection from '../components/sections/HeroSection.astro'
+import ResumenSection from '../components/sections/ResumenSection.astro'
+import EstudiantesSection from '../components/sections/EstudiantesSection.astro'
+import HeatmapSection from '../components/sections/HeatmapSection.astro'
+import SemestreSection from '../components/sections/SemestreSection.astro'
+import EgresadosSection from '../components/sections/EgresadosSection.astro'
+import ComparativasSection from '../components/sections/ComparativasSection.astro'
+import SobreNosotrosSection from '../components/sections/SobreNosotrosSection.astro'
+import { loadJSON } from '../utils/data'
+import type {
+  LabelValueData,
+  HeatmapRawData,
+  StudentInsights,
+  ComparativeRawData,
+  StudentSectionData,
+  GraduateSectionData,
+  ComparativeSectionData,
+} from '../types'
 
-const DATA_DIR = path.resolve('public/json_data')
+const estAreaAspirada = loadJSON<LabelValueData>('est_area_aspirada.json')
+const estFactorEmpleo = loadJSON<LabelValueData>('est_factor_empleo.json')
+const estFrameworks = loadJSON<LabelValueData>('est_frameworks.json')
+const estFrecuenciaIa = loadJSON<LabelValueData>('est_frecuencia_ia.json')
+const estHorasAutonomas = loadJSON<LabelValueData>('est_horas_autonomas.json')
+const estImpactoIa = loadJSON<LabelValueData>('est_impacto_ia.json')
+const estLenguajes = loadJSON<LabelValueData>('est_lenguajes.json')
+const estMetaGraduacion = loadJSON<LabelValueData>('est_meta_graduacion.json')
+const estSemestre = loadJSON<LabelValueData>('est_semestre.json')
+const heatmap = loadJSON<HeatmapRawData>('heatmap_lenguajes_frameworks.json')
+const insights = loadJSON<StudentInsights>('insights.json')
 
-function loadJSON(filename: string) {
-  return JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), 'utf-8'))
+const gradAnosGraduacion = loadJSON<LabelValueData>('grad_anos_graduacion.json')
+const gradTrabajaSector = loadJSON<LabelValueData>('grad_trabaja_sector.json')
+const gradRol = loadJSON<LabelValueData>('grad_rol.json')
+const gradTiempoEmpleo = loadJSON<LabelValueData>('grad_tiempo_empleo.json')
+const gradNivelIngles = loadJSON<LabelValueData>('grad_nivel_ingles.json')
+const gradFrecuenciaIa = loadJSON<LabelValueData>('grad_frecuencia_ia.json')
+const gradImpactoIa = loadJSON<LabelValueData>('grad_impacto_ia.json')
+const gradFactorSeleccion = loadJSON<LabelValueData>('grad_factor_seleccion.json')
+const gradLenguajes = loadJSON<LabelValueData>('grad_lenguajes.json')
+const gradFrameworks = loadJSON<LabelValueData>('grad_frameworks.json')
+
+const compLenguajes = loadJSON<ComparativeRawData>('comparativa_lenguajes.json')
+const compFrameworks = loadJSON<ComparativeRawData>('comparativa_frameworks.json')
+const compFrecuenciaIa = loadJSON<ComparativeRawData>('comparativa_frecuencia_ia.json')
+
+const studentData: StudentSectionData = {
+  lenguajes: estLenguajes,
+  frameworks: estFrameworks,
+  areaAspirada: estAreaAspirada,
+  horasAutonomas: estHorasAutonomas,
+  factorEmpleo: estFactorEmpleo,
+  impactoIa: estImpactoIa,
+  metaGraduacion: estMetaGraduacion,
+  frecuenciaIa: estFrecuenciaIa,
 }
 
-const estAreaAspirada = loadJSON('est_area_aspirada.json')
-const estFactorEmpleo = loadJSON('est_factor_empleo.json')
-const estFrameworks = loadJSON('est_frameworks.json')
-const estFrecuenciaIa = loadJSON('est_frecuencia_ia.json')
-const estHorasAutonomas = loadJSON('est_horas_autonomas.json')
-const estImpactoIa = loadJSON('est_impacto_ia.json')
-const estLenguajes = loadJSON('est_lenguajes.json')
-const estMetaGraduacion = loadJSON('est_meta_graduacion.json')
-const estSemestre = loadJSON('est_semestre.json')
-const heatmap = loadJSON('heatmap_lenguajes_frameworks.json')
-const insights = loadJSON('insights.json')
-
-const gradAnosGraduacion = loadJSON('grad_anos_graduacion.json')
-const gradTrabajaSector = loadJSON('grad_trabaja_sector.json')
-const gradRol = loadJSON('grad_rol.json')
-const gradTiempoEmpleo = loadJSON('grad_tiempo_empleo.json')
-const gradNivelIngles = loadJSON('grad_nivel_ingles.json')
-const gradFrecuenciaIa = loadJSON('grad_frecuencia_ia.json')
-const gradImpactoIa = loadJSON('grad_impacto_ia.json')
-const gradFactorSeleccion = loadJSON('grad_factor_seleccion.json')
-const gradLenguajes = loadJSON('grad_lenguajes.json')
-const gradFrameworks = loadJSON('grad_frameworks.json')
-
-const compLenguajes = loadJSON('comparativa_lenguajes.json')
-const compFrameworks = loadJSON('comparativa_frameworks.json')
-const compFrecuenciaIa = loadJSON('comparativa_frecuencia_ia.json')
-
-function toEntries(labels: string[], values: number[]) {
-  return labels.map((label, i) => ({ label, value: values[i] }))
+const graduateData: GraduateSectionData = {
+  rol: gradRol,
+  lenguajes: gradLenguajes,
+  frameworks: gradFrameworks,
+  tiempoEmpleo: gradTiempoEmpleo,
+  trabajaSector: gradTrabajaSector,
+  nivelIngles: gradNivelIngles,
+  frecuenciaIa: gradFrecuenciaIa,
+  impactoIa: gradImpactoIa,
+  factorSeleccion: gradFactorSeleccion,
 }
 
-function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
-  const main = data.labels.map((label, i) => ({ label, value: data.values[i] })).filter((e) => e.value > 1)
-  const otherCount = data.values.reduce((sum, v) => (v === 1 ? sum + v : sum), 0)
-  if (otherCount > 0) main.push({ label: 'Otra', value: otherCount })
-  return main
+const comparativeData: ComparativeSectionData = {
+  lenguajes: compLenguajes,
+  frameworks: compFrameworks,
+  frecuenciaIa: compFrecuenciaIa,
 }
 ---
 
@@ -59,218 +82,12 @@ function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
   <Header slot="header" />
   <Footer slot="footer" />
 
-  <section
-    id="inicio"
-    class="flex flex-col items-center justify-center text-center px-6 py-12 gap-3"
-  >
-    <h1 class="text-3xl font-bold text-gray-900">Resultados de la Encuesta AIS 2026</h1>
-    <p class="text-lg text-gray-500 max-w-[600px]">
-      Visualización de datos recolectados de los estudiantes del Área de Ingeniería en Sistemas (AIS) de la Universidad
-      Nacional Experimental Rómulo Gallegos
-    </p>
-  </section>
-
-  <section
-    id="resumen"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Resumen</h2>
-    <InsightsPanel insights={insights} />
-  </section>
-
-  <section
-    id="estudiantes"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Resultados</h2>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
-      <BarChart
-        datos={toEntries(estLenguajes.labels, estLenguajes.values)}
-        titulo="¿Qué lenguajes de programación estás estudiando o te interesa aprender activamente por tu cuenta?"
-        descripcion="Python y JavaScript lideran como los lenguajes más populares entre los estudiantes, reflejando su versatilidad en desarrollo web, ciencia de datos y automatización."
-      />
-      <BarChart
-        datos={toEntries(estFrameworks.labels, estFrameworks.values)}
-        titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?"
-        descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno."
-      />
-      <BarChart
-        datos={toEntries(estAreaAspirada.labels, estAreaAspirada.values)}
-        titulo="¿A qué área de la tecnología te gustaría dedicarte principalmente cuando te gradúes?"
-        descripcion="El desarrollo de videojuegos y la ciberseguridad son las áreas que más atraen a los estudiantes, seguidas por el desarrollo fullstack."
-      />
-      <BarChart
-        datos={toEntries(estHorasAutonomas.labels, estHorasAutonomas.values)}
-        titulo="¿Cuántas horas a la semana le dedicas a estudiar tecnología de forma autónoma?"
-        descripcion="La mayoría de los estudiantes dedica entre 1 y 5 horas semanales al estudio autónomo, mientras que un grupo significativo solo cumple con las asignaciones universitarias."
-      />
-      <PieChart
-        datos={toEntries(estFactorEmpleo.labels, estFactorEmpleo.values)}
-        titulo="¿Qué factor crees que será el más determinante para conseguir tu primer empleo en tecnología?"
-        descripcion="El título universitario es considerado el factor más importante para conseguir empleo, seguido por el portafolio de proyectos personales."
-      />
-      <PieChart
-        datos={toEntries(estImpactoIa.labels, estImpactoIa.values)}
-        titulo="¿Qué impacto crees que tendrá la Inteligencia Artificial en el rol profesional al que aspiras en los próximos 5 años?"
-        descripcion="La gran mayoría cree que la IA será una herramienta obligatoria que aumentará la productividad sin reemplazar el rol del profesional."
-      />
-      <PieChart
-        datos={groupSinglesAsOther(estMetaGraduacion)}
-        titulo="¿Cuál es tu meta principal a corto plazo tras graduarte?"
-        descripcion="Trabajar de forma remota para una empresa extranjera es la meta principal, seguida por el emprendimiento, reflejando una visión global y orientada a la autonomía."
-      />
-      <PieChart
-        datos={toEntries(estFrecuenciaIa.labels, estFrecuenciaIa.values)}
-        titulo="¿Con qué frecuencia utilizas asistentes de Inteligencia Artificial para resolver tareas de la universidad o aprender a programar?"
-        descripcion="Más de la mitad de los estudiantes usa IA a diario como parte fundamental de su método de estudio, y un porcentaje considerable la usa ocasionalmente."
-      />
-    </div>
-  </section>
-
-  <section
-    id="heatmap"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Heatmap: Lenguajes y Frameworks</h2>
-    <div class="grid grid-cols-1 gap-6">
-      <HeatmapChart
-        xLabels={heatmap.xLabels}
-        yLabels={heatmap.yLabels}
-        data={heatmap.data}
-        titulo={heatmap.title}
-        descripcion="La celda resaltada en azul más oscuro muestra la combinación más frecuente: Node.js con JavaScript, seguido de Python con Node.js y React con JavaScript. Esto confirma que el ecosistema JavaScript/Node.js es el más dominante entre los estudiantes."
-      />
-    </div>
-  </section>
-
-  <section
-    id="semestre"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Distribución por Semestre</h2>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
-      <BarChart
-        datos={toEntries(estSemestre.labels, estSemestre.values)}
-        titulo="¿Qué año o semestre estás cursando actualmente?"
-        descripcion="La mayoría de los encuestados se concentra en los semestres intermedios (4to a 6to), con picos notables en 4to semestre y 2do semestre."
-      />
-    </div>
-  </section>
-
-  <section
-    id="egresados"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Egresados</h2>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
-      <BarChart
-        datos={toEntries(gradRol.labels, gradRol.values)}
-        titulo="¿Cuál es tu rol o área de especialización principal?"
-        descripcion="Docencia/Divulgación y Gestión de Proyectos lideran entre los egresados, seguidos por Administración de Bases de Datos y Desarrollo Fullstack."
-      />
-      <BarChart
-        datos={toEntries(gradLenguajes.labels, gradLenguajes.values)}
-        titulo="¿Cuáles son los lenguajes principales que usas en tu día a día laboral?"
-        descripcion="JavaScript, Python y SQL son los lenguajes más usados por los egresados en el ámbito laboral, reflejando la demanda del mercado."
-      />
-      <BarChart
-        datos={toEntries(gradFrameworks.labels, gradFrameworks.values)}
-        titulo="¿Qué frameworks o librerías usas en tus proyectos profesionales?"
-        descripcion="Django y WordPress son los frameworks más utilizados por los egresados, seguidos por Laravel y AngularJS."
-      />
-      <BarChart
-        datos={toEntries(gradTiempoEmpleo.labels, gradTiempoEmpleo.values)}
-        titulo="¿Cuánto tiempo te tomó conseguir tu primer empleo tras egresar?"
-        descripcion="La mayoría de los egresados ya trabajaba en el área antes de graduarse o encontró empleo en menos de 3 meses."
-      />
-      <PieChart
-        datos={toEntries(gradTrabajaSector.labels, gradTrabajaSector.values)}
-        titulo="¿Trabajas actualmente en el sector tecnológico?"
-        descripcion="La gran mayoría de los egresados encuestados trabaja actualmente en el sector tecnológico."
-      />
-      <PieChart
-        datos={toEntries(gradNivelIngles.labels, gradNivelIngles.values)}
-        titulo="¿Qué nivel de inglés se requiere en tu puesto?"
-        descripcion="El nivel básico de inglés es el más requerido, seguido por el nivel intermedio."
-      />
-      <PieChart
-        datos={toEntries(gradFrecuenciaIa.labels, gradFrecuenciaIa.values)}
-        titulo="¿Con qué frecuencia usas herramientas de IA en tu trabajo?"
-        descripcion="El uso de IA está dividido entre uso diario y ocasional entre los egresados."
-      />
-      <PieChart
-        datos={toEntries(gradImpactoIa.labels, gradImpactoIa.values)}
-        titulo="¿Cómo describirías el impacto real de la IA en tu puesto?"
-        descripcion="La mayoría de los egresados reporta que la IA les permite asumir tareas más complejas."
-      />
-      <PieChart
-        datos={toEntries(gradFactorSeleccion.labels, gradFactorSeleccion.values)}
-        titulo="¿Qué factor fue el más determinante para que te seleccionaran?"
-        descripcion="La experiencia laboral previa o portafolio fue el factor más determinante, seguido por las pruebas técnicas."
-      />
-    </div>
-  </section>
-
-  <section
-    id="comparativas"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Comparativas: Estudiantes vs Egresados</h2>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
-      <GroupedBarChart
-        labels={compLenguajes.labels}
-        datasets={compLenguajes.datasets}
-        titulo="Lenguajes de programación: estudiantes (estudian/aprenden) vs egresados (usan en el trabajo)"
-      />
-      <GroupedBarChart
-        labels={compFrameworks.labels}
-        datasets={compFrameworks.datasets}
-        titulo="Frameworks: estudiantes (interés en aprender) vs egresados (usan en el trabajo)"
-      />
-      <GroupedBarChart
-        labels={compFrecuenciaIa.labels}
-        datasets={compFrecuenciaIa.datasets}
-        titulo="Frecuencia de uso de IA: estudiantes vs egresados"
-      />
-    </div>
-    <p class="text-sm text-gray-500 mt-4 text-center">
-      Los valores muestran el porcentaje de cada grupo que seleccionó cada opción.
-    </p>
-  </section>
-
-  <section
-    id="sobre-nosotros"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Sobre Nosotros</h2>
-
-    <p class="text-base text-gray-500 mb-6">
-      Proyecto realizado para la cátedra de <strong>Probabilidad y Estadística</strong> del Programa de Ingeniería en Informática
-      de la UNERG, dada por la profesora <strong>Marisela Trujillo</strong>.
-    </p>
-
-    <h3 class="text-1xl font-bold mb-4">Estudiantes:</h3>
-
-    <div class="flex flex-wrap gap-6">
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Milagros Aponte</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Luis Ávila</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Rafael Benavides</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Ricardo Marín</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Bárbara Molina</h3>
-      </div>
-    </div>
-  </section>
+  <HeroSection />
+  <ResumenSection insights={insights} />
+  <EstudiantesSection data={studentData} />
+  <HeatmapSection heatmap={heatmap} />
+  <SemestreSection data={estSemestre} />
+  <EgresadosSection data={graduateData} />
+  <ComparativasSection data={comparativeData} />
+  <SobreNosotrosSection />
 </Layout>

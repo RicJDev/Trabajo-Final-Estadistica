@@ -1,0 +1,61 @@
+---
+import BarChart from '../BarChart.astro'
+import PieChart from '../PieChart.astro'
+import { toEntries, groupSinglesAsOther } from '../../utils/data'
+import type { StudentSectionData } from '../../types'
+
+export interface Props {
+  data: StudentSectionData
+}
+
+const { data: d } = Astro.props
+---
+
+<section
+  id="estudiantes"
+  class="max-w-6xl mx-auto px-6 py-8 pb-12"
+>
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">Resultados</h2>
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
+    <BarChart
+      datos={toEntries(d.lenguajes)}
+      titulo="¿Qué lenguajes de programación estás estudiando o te interesa aprender activamente por tu cuenta?"
+      descripcion="Python y JavaScript lideran como los lenguajes más populares entre los estudiantes, reflejando su versatilidad en desarrollo web, ciencia de datos y automatización."
+    />
+    <BarChart
+      datos={toEntries(d.frameworks)}
+      titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?"
+      descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno."
+    />
+    <BarChart
+      datos={toEntries(d.areaAspirada)}
+      titulo="¿A qué área de la tecnología te gustaría dedicarte principalmente cuando te gradúes?"
+      descripcion="El desarrollo de videojuegos y la ciberseguridad son las áreas que más atraen a los estudiantes, seguidas por el desarrollo fullstack."
+    />
+    <BarChart
+      datos={toEntries(d.horasAutonomas)}
+      titulo="¿Cuántas horas a la semana le dedicas a estudiar tecnología de forma autónoma?"
+      descripcion="La mayoría de los estudiantes dedica entre 1 y 5 horas semanales al estudio autónomo, mientras que un grupo significativo solo cumple con las asignaciones universitarias."
+    />
+    <PieChart
+      datos={toEntries(d.factorEmpleo)}
+      titulo="¿Qué factor crees que será el más determinante para conseguir tu primer empleo en tecnología?"
+      descripcion="El título universitario es considerado el factor más importante para conseguir empleo, seguido por el portafolio de proyectos personales."
+    />
+    <PieChart
+      datos={toEntries(d.impactoIa)}
+      titulo="¿Qué impacto crees que tendrá la Inteligencia Artificial en el rol profesional al que aspiras en los próximos 5 años?"
+      descripcion="La gran mayoría cree que la IA será una herramienta obligatoria que aumentará la productividad sin reemplazar el rol del profesional."
+    />
+    <PieChart
+      datos={groupSinglesAsOther(d.metaGraduacion)}
+      titulo="¿Cuál es tu meta principal a corto plazo tras graduarte?"
+      descripcion="Trabajar de forma remota para una empresa extranjera es la meta principal, seguida por el emprendimiento, reflejando una visión global y orientada a la autonomía."
+    />
+    <PieChart
+      datos={toEntries(d.frecuenciaIa)}
+      titulo="¿Con qué frecuencia utilizas asistentes de Inteligencia Artificial para resolver tareas de la universidad o aprender a programar?"
+      descripcion="Más de la mitad de los estudiantes usa IA a diario como parte fundamental de su método de estudio, y un porcentaje considerable la usa ocasionalmente."
+    />
+  </div>
+</section>

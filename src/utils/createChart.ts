@@ -13,6 +13,8 @@ import {
   Legend,
 } from 'chart.js'
 
+import type { DataPoint, GroupedBarChartData } from '../types'
+
 Chart.register(
   BarController,
   BarElement,
@@ -27,30 +29,13 @@ Chart.register(
   Legend,
 )
 
-const COLOR_PALETTE = [
-  '#3b82f6', //
-  '#10b981',
-  '#f59e0b',
-  '#ef4444',
-  '#8b5cf6',
-  '#ec4899',
-  '#14b8a6',
-  '#f97316',
-]
-
-const COLORS_BY_NIVEL = {
-  1: '#93c5fd',
-  2: '#60a5fa',
-  3: '#3b82f6',
-  4: '#2563eb',
-  5: '#1d4ed8',
-}
+const COLOR_PALETTE = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316']
 
 function truncateLabel(text: string, max = 30): string {
   return text.length > max ? text.slice(0, max) + '…' : text
 }
 
-export function createBarChart(canvas: HTMLCanvasElement, data: Record<string, string>[], title: string) {
+export function createBarChart(canvas: HTMLCanvasElement, data: DataPoint[], title: string) {
   Chart.getChart(canvas)?.destroy()
   return new Chart(canvas, {
     type: 'bar',
@@ -97,7 +82,7 @@ export function createBarChart(canvas: HTMLCanvasElement, data: Record<string, s
   })
 }
 
-export function createPieChart(canvas: HTMLCanvasElement, data: Record<string, string>[], title: string) {
+export function createPieChart(canvas: HTMLCanvasElement, data: DataPoint[], title: string) {
   return new Chart(canvas, {
     type: 'doughnut',
     data: {
@@ -128,13 +113,17 @@ export function createPieChart(canvas: HTMLCanvasElement, data: Record<string, s
   })
 }
 
-export function createLineChart(canvas: HTMLCanvasElement, data: any[]) {
+export function createLineChart(
+  canvas: HTMLCanvasElement,
+  data: { anios: string[]; datasets: { label: string; data: number[] }[] },
+  _title: string,
+) {
   return new Chart(canvas, {
     type: 'line',
     data: {
-      // labels: datos.anios,
       datasets: data.datasets.map((ds, i) => ({
-        ...ds,
+        label: ds.label,
+        data: ds.data,
         borderColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
         backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length] + '20',
         fill: false,
@@ -163,11 +152,7 @@ export function createLineChart(canvas: HTMLCanvasElement, data: any[]) {
   })
 }
 
-export function createGroupedBarChart(
-  canvas: HTMLCanvasElement,
-  data: { labels: string[]; datasets: { label: string; data: number[]; color: string }[] },
-  title: string,
-) {
+export function createGroupedBarChart(canvas: HTMLCanvasElement, data: GroupedBarChartData, title: string) {
   Chart.getChart(canvas)?.destroy()
   return new Chart(canvas, {
     type: 'bar',

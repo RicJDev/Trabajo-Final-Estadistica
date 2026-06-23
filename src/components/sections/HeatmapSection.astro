@@ -1,0 +1,26 @@
+---
+import HeatmapChart from '../HeatmapChart.astro'
+import type { HeatmapRawData } from '../../types'
+
+export interface Props {
+  heatmap: HeatmapRawData
+}
+
+const { heatmap } = Astro.props
+---
+
+<section
+  id="heatmap"
+  class="max-w-6xl mx-auto px-6 py-8 pb-12"
+>
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">Heatmap: Lenguajes y Frameworks</h2>
+  <div class="grid grid-cols-1 gap-6">
+    <HeatmapChart
+      xLabels={heatmap.xLabels}
+      yLabels={heatmap.yLabels}
+      data={heatmap.data}
+      titulo={heatmap.title}
+      descripcion="La celda resaltada en azul más oscuro muestra la combinación más frecuente: Node.js con JavaScript, seguido de Python con Node.js y React con JavaScript. Esto confirma que el ecosistema JavaScript/Node.js es el más dominante entre los estudiantes."
+    />
+  </div>
+</section>

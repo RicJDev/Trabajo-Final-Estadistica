@@ -1,9 +1,7 @@
 ---
-export interface Props {
-  labels: string[]
-  datasets: { label: string; data: number[]; color: string }[]
-  titulo: string
-}
+import type { GroupedBarChartProps } from '../types'
+
+type Props = GroupedBarChartProps
 
 const { labels, datasets, titulo } = Astro.props
 const chartData = JSON.stringify({ labels, datasets })
@@ -29,9 +27,10 @@ const containerHeight = chartHeight + 60
 
 <script>
   import { createGroupedBarChart } from '../utils/createChart'
+  import type { GroupedBarChartData } from '../types'
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-barras-agrupadas').forEach((canvas) => {
-    const data = JSON.parse(canvas.dataset.chart!)
+    const data = JSON.parse(canvas.dataset.chart!) as GroupedBarChartData
     const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
     createGroupedBarChart(canvas, data, title)
   })

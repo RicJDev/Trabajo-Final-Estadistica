@@ -1,22 +1,9 @@
 ---
 import InsightBlock from './InsightBlock.astro'
+import type { StudentInsights } from '../types'
 
 export interface Props {
-  insights: {
-    estudiantes: {
-      total: number
-      top_lenguajes: { label: string; count: number }[]
-      top_frameworks: { label: string; count: number }[]
-      top_areas: { label: string; count: number }[]
-      distribucion_horas: { label: string; count: number }[]
-      factor_empleo: { label: string; count: number }[]
-      impacto_ia: { label: string; count: number }[]
-      frecuencia_ia: { label: string; count: number }[]
-      meta_graduacion: { label: string; count: number }[]
-      uso_diario_ia_pct: number
-      impacto_positivo_ia_pct: number
-    }
-  }
+  insights: StudentInsights
 }
 
 const { insights } = Astro.props
@@ -27,29 +14,23 @@ const e = insights.estudiantes
   <InsightBlock
     blue
     highlighted={e.total}
+    >Estudiantes encuestados</InsightBlock
   >
-    Estudiantes encuestados
-  </InsightBlock>
 
   <InsightBlock highlighted={e.top_lenguajes[0]?.label}>
     Lenguaje más popular - {e.top_lenguajes[0]?.count} respuestas
   </InsightBlock>
 
-  <InsightBlock highlighted={e.top_frameworks[0]?.label}
-    >Framework más popular — {e.top_frameworks[0]?.count} respuestas</InsightBlock
-  >
+  <InsightBlock highlighted={e.top_frameworks[0]?.label}>
+    Framework más popular — {e.top_frameworks[0]?.count} respuestas
+  </InsightBlock>
 
   <InsightBlock highlighted={e.top_areas[0]?.label}>
     Área más aspirada — {e.top_areas[0]?.count} respuestas
   </InsightBlock>
 
-  <InsightBlock highlighted={`${e.uso_diario_ia_pct}%`}>
-    Usan IA a diario
-  </InsightBlock>
-
-  <InsightBlock highlighted={`${e.impacto_positivo_ia_pct}%`}>
-    Creen que IA será herramienta obligatoria
-  </InsightBlock>
+  <InsightBlock highlighted={`${e.uso_diario_ia_pct}%`}>Usan IA a diario</InsightBlock>
+  <InsightBlock highlighted={`${e.impacto_positivo_ia_pct}%`}>Creen que IA será herramienta obligatoria</InsightBlock>
 
   <InsightBlock highlighted={e.meta_graduacion[0]?.label}>
     Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas

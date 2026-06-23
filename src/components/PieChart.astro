@@ -1,9 +1,7 @@
 ---
-export interface Props {
-  datos: { label: string; value: number }[]
-  titulo: string
-  descripcion?: string
-}
+import type { PieChartProps } from '../types'
+
+type Props = PieChartProps
 
 const { datos, titulo, descripcion } = Astro.props
 const chartData = JSON.stringify(datos)
@@ -20,9 +18,10 @@ const chartData = JSON.stringify(datos)
 
 <script>
   import { createPieChart } from '../utils/createChart'
+  import type { DataPoint } from '../types'
 
   document.querySelectorAll<HTMLCanvasElement>('.grafico-pastel').forEach((canvas) => {
-    const datos = JSON.parse(canvas.dataset.chart!)
+    const datos = JSON.parse(canvas.dataset.chart!) as DataPoint[]
     const titulo = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
     createPieChart(canvas, datos, titulo)
   })

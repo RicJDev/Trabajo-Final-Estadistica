@@ -1,11 +1,7 @@
 ---
-export interface Props {
-  xLabels: string[]
-  yLabels: string[]
-  data: number[][]
-  titulo: string
-  descripcion?: string
-}
+import type { HeatmapChartProps } from '../types'
+
+type Props = HeatmapChartProps
 
 const { xLabels, yLabels, data, titulo, descripcion } = Astro.props
 
@@ -42,7 +38,7 @@ function color(value: number): string {
         {
           data.map((row, i) => (
             <tr>
-              <th class=" bg-white z-1 min-w-[120px] text-left p-2 px-3 font-medium text-gray-700 max-sm:min-w-[100px] max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem]">
+              <th class="bg-white z-1 min-w-[120px] text-left p-2 px-3 font-medium text-gray-700 max-sm:min-w-[100px] max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem]">
                 {yLabels[i]}
               </th>
               {row.map((v) => (
