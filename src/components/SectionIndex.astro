@@ -1,0 +1,49 @@
+---
+export interface TOCChild {
+  label: string
+  href: string
+}
+
+export interface TOCGroup {
+  label: string
+  href: string
+  children: TOCChild[]
+}
+
+export interface Props {
+  groups: TOCGroup[]
+}
+
+const { groups } = Astro.props
+---
+
+<nav class="max-w-6xl mx-auto px-6 pt-8">
+  <div class="flex flex-wrap gap-6">
+    {
+      groups.map((group) => (
+        <div class="grow-0 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6">
+          <a
+            href={group.href}
+            class="block text-sm font-semibold text-gray-900 no-underline transition hover:text-blue-700 mb-3"
+          >
+            {group.label}
+          </a>
+          <ol class="list-none space-y-1.5">
+            {
+              group.children.map((child) => (
+                <li>
+                  <a
+                    href={child.href}
+                    class="text-sm text-gray-500 no-underline transition hover:text-blue-600"
+                  >
+                    {child.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      ))
+    }
+  </div>
+</nav>

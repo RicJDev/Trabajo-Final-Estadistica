@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   site: 'https://ricjdev.github.io',
   base: '/Trabajo-Final-Estadistica/',
+
   vite: {
     plugins: [tailwindcss()],
   },

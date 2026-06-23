@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "Básico",
+    "Intermedio",
+    "Avanzado / Nativo",
+    "No se requiere"
+  ],
+  "values": [
+    10,
+    4,
+    2,
+    2
+  ]
+}

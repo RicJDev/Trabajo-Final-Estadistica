@@ -1,69 +1,85 @@
 ---
+import InsightBlock from './InsightBlock.astro'
+import type { StudentInsights } from '../types'
+
 export interface Props {
-  insights: {
-    estudiantes: {
-      total: number
-      top_lenguajes: { label: string; count: number }[]
-      top_frameworks: { label: string; count: number }[]
-      top_areas: { label: string; count: number }[]
-      distribucion_horas: { label: string; count: number }[]
-      factor_empleo: { label: string; count: number }[]
-      impacto_ia: { label: string; count: number }[]
-      frecuencia_ia: { label: string; count: number }[]
-      meta_graduacion: { label: string; count: number }[]
-      uso_diario_ia_pct: number
-      impacto_positivo_ia_pct: number
-    }
-  }
+  insights: StudentInsights
 }
 
 const { insights } = Astro.props
 const e = insights.estudiantes
+const g = insights.egresados
 ---
 
+<h3 class="text-lg font-semibold text-gray-900 mb-3">Estudiantes</h3>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mb-8">
+  <InsightBlock
+    blue
+    highlighted={e.total}
+    >Estudiantes encuestados</InsightBlock
+  >
+
+  <InsightBlock highlighted={e.top_lenguajes[0]?.label}>
+    Lenguaje más popular — {e.top_lenguajes[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={e.top_frameworks[0]?.label}>
+    Framework más popular — {e.top_frameworks[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={e.top_areas[0]?.label}>
+    Área más aspirada — {e.top_areas[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={`${e.uso_diario_ia_pct}%`}>Usan IA a diario</InsightBlock>
+  <InsightBlock highlighted={`${e.impacto_positivo_ia_pct}%`}>Creen que IA será herramienta obligatoria</InsightBlock>
+
+  <InsightBlock highlighted={e.meta_graduacion[0]?.label}>
+    Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={e.factor_empleo[0]?.label}>
+    Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas
+  </InsightBlock>
+
+  <InsightBlock highlighted={e.distribucion_horas[0]?.label}>
+    Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas
+  </InsightBlock>
+</div>
+
+<h3 class="text-lg font-semibold text-gray-900 mb-3">Egresados</h3>
 <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-  <div class="bg-blue-50 border border-blue-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.total}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Estudiantes encuestados</span>
-  </div>
+  <InsightBlock
+    blue
+    highlighted={g.total}
+    >Egresados encuestados</InsightBlock
+  >
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_lenguajes[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Lenguaje más popular — {e.top_lenguajes[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={g.top_lenguajes[0]?.label}>
+    Lenguaje más usado en el trabajo — {g.top_lenguajes[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_frameworks[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Framework más popular — {e.top_frameworks[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={g.top_frameworks[0]?.label}>
+    Framework más usado — {g.top_frameworks[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_areas[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Área más aspirada — {e.top_areas[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={g.top_rol[0]?.label}>
+    Rol más común — {g.top_rol[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.uso_diario_ia_pct}%</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Usan IA a diario</span>
-  </div>
+  <InsightBlock highlighted={g.top_factor_seleccion[0]?.label}>
+    Factor principal de contratación
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.impacto_positivo_ia_pct}%</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Creen que IA será herramienta obligatoria</span>
-  </div>
+  <InsightBlock highlighted={`${g.trabaja_sector_pct}%`}>
+    Trabaja en el sector de TI
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.meta_graduacion[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={`${g.usa_ia_diario_pct}%`}>
+    Usa IA a diario en el trabajo
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.factor_empleo[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas</span>
-  </div>
-
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.distribucion_horas[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={g.top_nivel_ingles[0]?.label}>
+    Nivel de inglés más requerido — {g.top_nivel_ingles[0]?.count} respuestas
+  </InsightBlock>
 </div>

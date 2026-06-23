@@ -1,0 +1,32 @@
+{
+  "labels": [
+    "JavaScript",
+    "Python",
+    "SQL",
+    "PHP",
+    "Java",
+    "Otro",
+    "C++",
+    "TypeScript",
+    "Kotlin",
+    "Go",
+    "PowerShell",
+    "C",
+    "Dart"
+  ],
+  "values": [
+    11,
+    11,
+    11,
+    8,
+    6,
+    5,
+    4,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}

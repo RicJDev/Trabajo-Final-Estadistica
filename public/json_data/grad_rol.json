@@ -1,0 +1,20 @@
+{
+  "labels": [
+    "Docencia / Divulgación",
+    "Gestión de Proyectos / Project Manager",
+    "Otra",
+    "Administración de Bases de Datos",
+    "Desarrollo Fullstack",
+    "Redes / Infraestructura",
+    "Ciencia de Datos"
+  ],
+  "values": [
+    4,
+    4,
+    3,
+    2,
+    2,
+    2,
+    1
+  ]
+}

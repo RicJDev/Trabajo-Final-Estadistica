@@ -1,164 +1,19 @@
 ---
-import fs from 'node:fs'
-import path from 'node:path'
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import BarChart from '../components/BarChart.astro'
-import PieChart from '../components/PieChart.astro'
-import HeatmapChart from '../components/HeatmapChart.astro'
-import InsightsPanel from '../components/InsightsPanel.astro'
+import HeroSection from '../components/sections/HeroSection.astro'
+import ResumenSection from '../components/sections/ResumenSection.astro'
+import { loadJSON } from '../utils/data'
+import type { StudentInsights } from '../types'
 
-const DATA_DIR = path.resolve('public/json_data')
-
-function loadJSON(filename: string) {
-  return JSON.parse(fs.readFileSync(path.join(DATA_DIR, filename), 'utf-8'))
-}
-
-const estAreaAspirada = loadJSON('est_area_aspirada.json')
-const estFactorEmpleo = loadJSON('est_factor_empleo.json')
-const estFrameworks = loadJSON('est_frameworks.json')
-const estFrecuenciaIa = loadJSON('est_frecuencia_ia.json')
-const estHorasAutonomas = loadJSON('est_horas_autonomas.json')
-const estImpactoIa = loadJSON('est_impacto_ia.json')
-const estLenguajes = loadJSON('est_lenguajes.json')
-const estMetaGraduacion = loadJSON('est_meta_graduacion.json')
-const heatmap = loadJSON('heatmap_lenguajes_frameworks.json')
-const insights = loadJSON('insights.json')
-
-function toEntries(labels: string[], values: number[]) {
-  return labels.map((label, i) => ({ label, value: values[i] }))
-}
-
-function groupSinglesAsOther(data: { labels: string[]; values: number[] }) {
-  const main = data.labels.map((label, i) => ({ label, value: data.values[i] })).filter((e) => e.value > 1)
-  const otherCount = data.values.reduce((sum, v) => (v === 1 ? sum + v : sum), 0)
-  if (otherCount > 0) main.push({ label: 'Otra', value: otherCount })
-  return main
-}
+const insights = loadJSON<StudentInsights>('insights.json')
 ---
 
 <Layout>
   <Header slot="header" />
   <Footer slot="footer" />
 
-  <section
-    id="inicio"
-    class="flex flex-col items-center justify-center text-center px-6 py-12 gap-3"
-  >
-    <h1 class="text-3xl font-bold text-gray-900">Resultados de la Encuesta AIS 2026</h1>
-    <p class="text-lg text-gray-500 max-w-[600px]">
-      Visualización de datos recolectados de los estudiantes del Área de Ingeniería en Sistemas (AIS) de la Universidad
-      Nacional Experimental Rómulo Gallegos
-    </p>
-  </section>
-
-  <section
-    id="resumen"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Resumen</h2>
-    <InsightsPanel insights={insights} />
-  </section>
-
-  <section
-    id="estudiantes"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Resultados</h2>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
-      <BarChart
-        datos={toEntries(estLenguajes.labels, estLenguajes.values)}
-        titulo="¿Qué lenguajes de programación estás estudiando o te interesa aprender activamente por tu cuenta?"
-        descripcion="Python y JavaScript lideran como los lenguajes más populares entre los estudiantes, reflejando su versatilidad en desarrollo web, ciencia de datos y automatización."
-      />
-      <BarChart
-        datos={toEntries(estFrameworks.labels, estFrameworks.values)}
-        titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?"
-        descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno."
-      />
-      <BarChart
-        datos={toEntries(estAreaAspirada.labels, estAreaAspirada.values)}
-        titulo="¿A qué área de la tecnología te gustaría dedicarte principalmente cuando te gradúes?"
-        descripcion="El desarrollo de videojuegos y la ciberseguridad son las áreas que más atraen a los estudiantes, seguidas por el desarrollo fullstack."
-      />
-      <BarChart
-        datos={toEntries(estHorasAutonomas.labels, estHorasAutonomas.values)}
-        titulo="¿Cuántas horas a la semana le dedicas a estudiar tecnología de forma autónoma?"
-        descripcion="La mayoría de los estudiantes dedica entre 1 y 5 horas semanales al estudio autónomo, mientras que un grupo significativo solo cumple con las asignaciones universitarias."
-      />
-      <PieChart
-        datos={toEntries(estFactorEmpleo.labels, estFactorEmpleo.values)}
-        titulo="¿Qué factor crees que será el más determinante para conseguir tu primer empleo en tecnología?"
-        descripcion="El título universitario es considerado el factor más importante para conseguir empleo, seguido por el portafolio de proyectos personales."
-      />
-      <PieChart
-        datos={toEntries(estImpactoIa.labels, estImpactoIa.values)}
-        titulo="¿Qué impacto crees que tendrá la Inteligencia Artificial en el rol profesional al que aspiras en los próximos 5 años?"
-        descripcion="La gran mayoría cree que la IA será una herramienta obligatoria que aumentará la productividad sin reemplazar el rol del profesional."
-      />
-      <PieChart
-        datos={groupSinglesAsOther(estMetaGraduacion)}
-        titulo="¿Cuál es tu meta principal a corto plazo tras graduarte?"
-        descripcion="Trabajar de forma remota para una empresa extranjera es la meta principal, seguida por el emprendimiento, reflejando una visión global y orientada a la autonomía."
-      />
-      <PieChart
-        datos={toEntries(estFrecuenciaIa.labels, estFrecuenciaIa.values)}
-        titulo="¿Con qué frecuencia utilizas asistentes de Inteligencia Artificial para resolver tareas de la universidad o aprender a programar?"
-        descripcion="Más de la mitad de los estudiantes usa IA a diario como parte fundamental de su método de estudio, y un porcentaje considerable la usa ocasionalmente."
-      />
-    </div>
-  </section>
-
-  <section
-    id="heatmap"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Heatmap: Lenguajes y Frameworks</h2>
-    <div class="grid grid-cols-1 gap-6">
-      <HeatmapChart
-        xLabels={heatmap.xLabels}
-        yLabels={heatmap.yLabels}
-        data={heatmap.data}
-        titulo={heatmap.title}
-        descripcion="La celda resaltada en azul más oscuro muestra la combinación más frecuente: Node.js con JavaScript, seguido de Python con Node.js y React con JavaScript. Esto confirma que el ecosistema JavaScript/Node.js es el más dominante entre los estudiantes."
-      />
-    </div>
-  </section>
-
-  <section
-    id="sobre-nosotros"
-    class="max-w-6xl mx-auto px-6 py-8 pb-12"
-  >
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Sobre Nosotros</h2>
-
-    <p class="text-base text-gray-500 mb-6">
-      Proyecto realizado para la cátedra de <strong>Probabilidad y Estadística</strong> del Programa de Ingeniería en Informática
-      de la UNERG, dada por la profesora <strong>Marisela Trujillo</strong>.
-    </p>
-
-    <h3 class="text-1xl font-bold mb-4">Estudiantes: </h3>
-
-    <div class="flex flex-wrap gap-6">
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Milagros Aponte</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Luis Ávila</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Rafael Benavides</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Ricardo Marín</h3>
-      </div>
-
-      <div class="flex-1 basis-[250px] bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-        <h3 class="text-lg font-semibold text-gray-900">Bárbara Molina</h3>
-      </div>
-    </div>
-  </section>
+  <HeroSection />
+  <ResumenSection insights={insights} />
 </Layout>

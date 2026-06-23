@@ -22,7 +22,10 @@
     "tailwindcss": "^4.3.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   },
   "devDependencies": {
     "@types/node": "^25.9.1",

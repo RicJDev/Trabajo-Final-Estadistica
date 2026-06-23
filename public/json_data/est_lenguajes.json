@@ -23,17 +23,14 @@
     "Go",
     "Swift",
     "COBOL",
-    "JavaScript / TypeScript",
     "Zig",
-    "C++ / C",
-    "SQL (PostgreSQL, MySQL, etc.)",
     "Fortran"
   ],
   "values": [
     135,
-    132,
-    92,
-    57,
+    134,
+    93,
+    58,
     47,
     41,
     33,
@@ -53,9 +50,6 @@
     7,
     5,
     2,
-    2,
-    1,
-    1,
     1,
     1
   ]

@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import SectionIndex from '../components/SectionIndex.astro'
+import EstudiantesSection from '../components/sections/EstudiantesSection.astro'
+import { loadJSON } from '../utils/data'
+import type {
+  LabelValueData,
+  HeatmapRawData,
+  StudentSectionData,
+} from '../types'
+
+const estAreaAspirada = loadJSON<LabelValueData>('est_area_aspirada.json')
+const estFactorEmpleo = loadJSON<LabelValueData>('est_factor_empleo.json')
+const estFrameworks = loadJSON<LabelValueData>('est_frameworks.json')
+const estFrecuenciaIa = loadJSON<LabelValueData>('est_frecuencia_ia.json')
+const estHorasAutonomas = loadJSON<LabelValueData>('est_horas_autonomas.json')
+const estImpactoIa = loadJSON<LabelValueData>('est_impacto_ia.json')
+const estLenguajes = loadJSON<LabelValueData>('est_lenguajes.json')
+const estMetaGraduacion = loadJSON<LabelValueData>('est_meta_graduacion.json')
+const estSemestre = loadJSON<LabelValueData>('est_semestre.json')
+const heatmap = loadJSON<HeatmapRawData>('heatmap_lenguajes_frameworks.json')
+
+const studentData: StudentSectionData = {
+  semestre: estSemestre,
+  lenguajes: estLenguajes,
+  frameworks: estFrameworks,
+  areaAspirada: estAreaAspirada,
+  horasAutonomas: estHorasAutonomas,
+  factorEmpleo: estFactorEmpleo,
+  impactoIa: estImpactoIa,
+  metaGraduacion: estMetaGraduacion,
+  frecuenciaIa: estFrecuenciaIa,
+  heatmap,
+}
+---
+
+<Layout>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  <SectionIndex
+      groups={[
+        {
+          label: 'Perfil del estudiante',
+          href: '#perfil-estudiante',
+          children: [
+            { label: 'Semestre cursado', href: '#chart-semestre' },
+          ],
+        },
+        {
+          label: 'Lenguajes y herramientas',
+          href: '#lenguajes-herramientas',
+          children: [
+            { label: 'Lenguajes de programación', href: '#chart-lenguajes' },
+            { label: 'Frameworks o librerías', href: '#chart-frameworks' },
+            { label: 'Lenguajes vs Frameworks', href: '#chart-heatmap' },
+          ],
+        },
+        {
+          label: 'Área profesional y metas',
+          href: '#area-profesional-metas',
+          children: [
+            { label: 'Área de interés', href: '#chart-area' },
+            { label: 'Meta al graduarse', href: '#chart-meta' },
+          ],
+        },
+        {
+          label: 'Hábitos de estudio y uso de IA',
+          href: '#habitos-estudio-ia',
+          children: [
+            { label: 'Horas de estudio autónomo', href: '#chart-horas' },
+            { label: 'Frecuencia de uso de IA', href: '#chart-frecuencia-ia' },
+          ],
+        },
+        {
+          label: 'Inserción laboral e impacto de la IA',
+          href: '#insercion-laboral-impacto-ia',
+          children: [
+            { label: 'Factor para conseguir empleo', href: '#chart-factor-empleo' },
+            { label: 'Impacto de la IA', href: '#chart-impacto-ia' },
+          ],
+        },
+      ]}
+    />
+  <EstudiantesSection data={studentData} />
+</Layout>

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import { ClientRouter } from 'astro:transitions'
 ---
 
 <!doctype html>
@@ -15,6 +16,7 @@ import '../styles/global.css'
       content={Astro.generator}
     />
     <title>Resultados Encuesta AIS 2026</title>
+    <ClientRouter />
   </head>
   <body class="min-h-dvh flex flex-col font-sans">
     <slot name="header" />

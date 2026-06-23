@@ -1,9 +1,7 @@
 ---
-export interface Props {
-  anios: string[]
-  datasets: { label: string; data: number[] }[]
-  titulo: string
-}
+import type { LineChartProps } from '../types'
+
+type Props = LineChartProps
 
 const { anios, datasets, titulo } = Astro.props
 const chartData = JSON.stringify({ anios, datasets })

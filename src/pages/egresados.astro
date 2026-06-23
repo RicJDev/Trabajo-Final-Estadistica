@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import SectionIndex from '../components/SectionIndex.astro'
+import EgresadosSection from '../components/sections/EgresadosSection.astro'
+import { loadJSON } from '../utils/data'
+import type { LabelValueData, GraduateSectionData } from '../types'
+
+const gradAnosGraduacion = loadJSON<LabelValueData>('grad_anos_graduacion.json')
+const gradTrabajaSector = loadJSON<LabelValueData>('grad_trabaja_sector.json')
+const gradRol = loadJSON<LabelValueData>('grad_rol.json')
+const gradTiempoEmpleo = loadJSON<LabelValueData>('grad_tiempo_empleo.json')
+const gradNivelIngles = loadJSON<LabelValueData>('grad_nivel_ingles.json')
+const gradFrecuenciaIa = loadJSON<LabelValueData>('grad_frecuencia_ia.json')
+const gradImpactoIa = loadJSON<LabelValueData>('grad_impacto_ia.json')
+const gradFactorSeleccion = loadJSON<LabelValueData>('grad_factor_seleccion.json')
+const gradLenguajes = loadJSON<LabelValueData>('grad_lenguajes.json')
+const gradFrameworks = loadJSON<LabelValueData>('grad_frameworks.json')
+
+const graduateData: GraduateSectionData = {
+  rol: gradRol,
+  lenguajes: gradLenguajes,
+  frameworks: gradFrameworks,
+  tiempoEmpleo: gradTiempoEmpleo,
+  trabajaSector: gradTrabajaSector,
+  nivelIngles: gradNivelIngles,
+  frecuenciaIa: gradFrecuenciaIa,
+  impactoIa: gradImpactoIa,
+  factorSeleccion: gradFactorSeleccion,
+}
+---
+
+<Layout>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  <SectionIndex
+      groups={[
+        {
+          label: 'Perfil laboral',
+          href: '#perfil-laboral',
+          children: [
+            { label: 'Rol de especialización', href: '#chart-rol' },
+            { label: 'Trabaja en el sector', href: '#chart-trabaja-sector' },
+            { label: 'Tiempo para conseguir empleo', href: '#chart-tiempo-empleo' },
+            { label: 'Factor de selección', href: '#chart-factor-seleccion' },
+          ],
+        },
+        {
+          label: 'Lenguajes y herramientas',
+          href: '#lenguajes-herramientas-egresados',
+          children: [
+            { label: 'Lenguajes que usa', href: '#chart-egresados-lenguajes' },
+            { label: 'Frameworks que usa', href: '#chart-egresados-frameworks' },
+          ],
+        },
+        {
+          label: 'Inglés',
+          href: '#ingles',
+          children: [
+            { label: 'Nivel requerido', href: '#chart-nivel-ingles' },
+          ],
+        },
+        {
+          label: 'IA en el trabajo',
+          href: '#ia-trabajo',
+          children: [
+            { label: 'Frecuencia de uso de IA', href: '#chart-egresados-frecuencia-ia' },
+            { label: 'Impacto de la IA', href: '#chart-egresados-impacto-ia' },
+          ],
+        },
+      ]}
+    />
+  <EgresadosSection data={graduateData} />
+</Layout>

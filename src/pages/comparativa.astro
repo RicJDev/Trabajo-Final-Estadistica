@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import SectionIndex from '../components/SectionIndex.astro'
+import ComparativasSection from '../components/sections/ComparativasSection.astro'
+import { loadJSON } from '../utils/data'
+import type { ComparativeRawData, ComparativeSectionData } from '../types'
+
+const compLenguajes = loadJSON<ComparativeRawData>('comparativa_lenguajes.json')
+const compFrameworks = loadJSON<ComparativeRawData>('comparativa_frameworks.json')
+const compFrecuenciaIa = loadJSON<ComparativeRawData>('comparativa_frecuencia_ia.json')
+
+const comparativeData: ComparativeSectionData = {
+  lenguajes: compLenguajes,
+  frameworks: compFrameworks,
+  frecuenciaIa: compFrecuenciaIa,
+}
+---
+
+<Layout>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  <SectionIndex
+      groups={[
+        {
+          label: 'Comparativa general',
+          href: '#comparativa-general',
+          children: [
+            { label: 'Lenguajes', href: '#chart-comp-lenguajes' },
+            { label: 'Frameworks', href: '#chart-comp-frameworks' },
+            { label: 'Frecuencia de uso de IA', href: '#chart-comp-frecuencia-ia' },
+          ],
+        },
+      ]}
+    />
+  <ComparativasSection data={comparativeData} />
+</Layout>

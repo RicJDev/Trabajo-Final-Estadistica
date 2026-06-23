@@ -1,28 +1,44 @@
 ---
-export interface Props {
-  labels: string[]
-  datasets: { label: string; data: number[]; color: string }[]
-  titulo: string
-}
+import type { GroupedBarChartProps } from '../types'
 
-const { labels, datasets, titulo } = Astro.props
+type Props = GroupedBarChartProps
+
+const { labels, datasets, titulo, id } = Astro.props
 const chartData = JSON.stringify({ labels, datasets })
+const chartHeight = Math.max(300, labels.length * 35)
+const containerHeight = chartHeight + 60
 ---
 
-<div class="bg-white border border-gray-200 rounded-lg p-6 w-full min-h-[450px]">
+<div
+  id={id}
+  class="bg-white border border-gray-200 rounded-lg p-6 w-full"
+  style={`min-height: ${containerHeight}px`}
+>
   <h3 class="text-base font-semibold text-gray-900 mb-4">{titulo}</h3>
-  <canvas
-    class="grafico-barras-agrupadas"
-    data-chart={chartData}
-  ></canvas>
+  <div
+    class="relative w-full"
+    style={`height: ${chartHeight}px`}
+  >
+    <canvas
+      class="grafico-barras-agrupadas"
+      data-chart={chartData}
+    ></canvas>
+  </div>
 </div>
 
 <script>
   import { createGroupedBarChart } from '../utils/createChart'
+  import type { GroupedBarChartData } from '../types'
 
-  document.querySelectorAll<HTMLCanvasElement>('.grafico-barras-agrupadas').forEach((canvas) => {
-    const data = JSON.parse(canvas.dataset.chart!)
-    const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
-    createGroupedBarChart(canvas, data, title)
-  })
+  function initGroupedBarCharts() {
+    document.querySelectorAll<HTMLCanvasElement>('.grafico-barras-agrupadas').forEach((canvas) => {
+      if (canvas.dataset.inited) return
+      canvas.dataset.inited = 'true'
+      const data = JSON.parse(canvas.dataset.chart!) as GroupedBarChartData
+      const title = canvas.closest('[class*="bg-white"]')?.querySelector('h3')?.textContent ?? ''
+      createGroupedBarChart(canvas, data, title)
+    })
+  }
+
+  document.addEventListener('astro:page-load', initGroupedBarCharts)
 </script>

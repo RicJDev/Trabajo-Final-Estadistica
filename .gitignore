@@ -250,3 +250,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+scripts/json_data
+scripts/data

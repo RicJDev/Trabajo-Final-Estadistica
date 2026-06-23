@@ -1,0 +1,66 @@
+---
+import BarChart from '../BarChart.astro'
+import PieChart from '../PieChart.astro'
+import { toEntries } from '../../utils/data'
+import type { GraduateSectionData } from '../../types'
+
+export interface Props {
+  data: GraduateSectionData
+}
+
+const { data: d } = Astro.props
+---
+
+<section
+  id="egresados"
+  class="max-w-6xl mx-auto px-6 py-8 pb-12"
+>
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">Egresados</h2>
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
+    <BarChart
+      datos={toEntries(d.rol)}
+      titulo="¿Cuál es tu rol o área de especialización principal?"
+      descripcion="Docencia/Divulgación y Gestión de Proyectos lideran entre los egresados, seguidos por Administración de Bases de Datos y Desarrollo Fullstack."
+    />
+    <BarChart
+      datos={toEntries(d.lenguajes)}
+      titulo="¿Cuáles son los lenguajes principales que usas en tu día a día laboral?"
+      descripcion="JavaScript, Python y SQL son los lenguajes más usados por los egresados en el ámbito laboral, reflejando la demanda del mercado."
+    />
+    <BarChart
+      datos={toEntries(d.frameworks)}
+      titulo="¿Qué frameworks o librerías usas en tus proyectos profesionales?"
+      descripcion="Django y WordPress son los frameworks más utilizados por los egresados, seguidos por Laravel y AngularJS."
+    />
+    <BarChart
+      datos={toEntries(d.tiempoEmpleo)}
+      titulo="¿Cuánto tiempo te tomó conseguir tu primer empleo tras egresar?"
+      descripcion="La mayoría de los egresados ya trabajaba en el área antes de graduarse o encontró empleo en menos de 3 meses."
+    />
+    <PieChart
+      datos={toEntries(d.trabajaSector)}
+      titulo="¿Trabajas actualmente en el sector tecnológico?"
+      descripcion="La gran mayoría de los egresados encuestados trabaja actualmente en el sector tecnológico."
+    />
+    <PieChart
+      datos={toEntries(d.nivelIngles)}
+      titulo="¿Qué nivel de inglés se requiere en tu puesto?"
+      descripcion="El nivel básico de inglés es el más requerido, seguido por el nivel intermedio."
+    />
+    <PieChart
+      datos={toEntries(d.frecuenciaIa)}
+      titulo="¿Con qué frecuencia usas herramientas de IA en tu trabajo?"
+      descripcion="El uso de IA está dividido entre uso diario y ocasional entre los egresados."
+    />
+    <PieChart
+      datos={toEntries(d.impactoIa)}
+      titulo="¿Cómo describirías el impacto real de la IA en tu puesto?"
+      descripcion="La mayoría de los egresados reporta que la IA les permite asumir tareas más complejas."
+    />
+    <PieChart
+      datos={toEntries(d.factorSeleccion)}
+      titulo="¿Qué factor fue el más determinante para que te seleccionaran?"
+      descripcion="La experiencia laboral previa o portafolio fue el factor más determinante, seguido por las pruebas técnicas."
+    />
+  </div>
+</section>

@@ -28,15 +28,13 @@
     "Drupal",
     "Blazor",
     "Axum",
-    "Node.js (Express, NestJS)",
-    "Svelte",
-    "React / Next.js"
+    "Svelte"
   ],
   "values": [
-    98,
+    100,
     65,
     54,
-    50,
+    51,
     46,
     31,
     26,
@@ -61,8 +59,6 @@
     3,
     3,
     3,
-    2,
-    2,
-    1
+    2
   ]
 }
