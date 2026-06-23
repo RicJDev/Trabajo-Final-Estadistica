@@ -1,4 +1,6 @@
 ---
+import InsightBlock from './InsightBlock.astro'
+
 export interface Props {
   insights: {
     estudiantes: {
@@ -22,20 +24,20 @@ const e = insights.estudiantes
 ---
 
 <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-  <div class="bg-blue-50 border border-blue-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.total}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Estudiantes encuestados</span>
-  </div>
+  <InsightBlock
+    blue
+    highlighted={e.total}
+  >
+    Estudiantes encuestados
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_lenguajes[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Lenguaje más popular — {e.top_lenguajes[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={e.top_lenguajes[0]?.label}>
+    Lenguaje más popular - {e.top_lenguajes[0]?.count} respuestas
+  </InsightBlock>
 
-  <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
-    <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_frameworks[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Framework más popular — {e.top_frameworks[0]?.count} respuestas</span>
-  </div>
+  <InsightBlock highlighted={e.top_frameworks[0]?.label}
+    >Framework más popular — {e.top_frameworks[0]?.count} respuestas</InsightBlock
+  >
 
   <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
     <span class="text-xl font-bold text-blue-700 leading-tight">{e.top_areas[0]?.label}</span>
@@ -54,16 +56,22 @@ const e = insights.estudiantes
 
   <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
     <span class="text-xl font-bold text-blue-700 leading-tight">{e.meta_graduacion[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas</span>
+    <span class="text-sm text-gray-500 leading-relaxed"
+      >Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas</span
+    >
   </div>
 
   <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
     <span class="text-xl font-bold text-blue-700 leading-tight">{e.factor_empleo[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas</span>
+    <span class="text-sm text-gray-500 leading-relaxed"
+      >Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas</span
+    >
   </div>
 
   <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col gap-2">
     <span class="text-xl font-bold text-blue-700 leading-tight">{e.distribucion_horas[0]?.label}</span>
-    <span class="text-sm text-gray-500 leading-relaxed">Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas</span>
+    <span class="text-sm text-gray-500 leading-relaxed"
+      >Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas</span
+    >
   </div>
 </div>

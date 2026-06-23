@@ -29,16 +29,29 @@ function color(value: number): string {
       <thead>
         <tr>
           <th class="text-left p-2 px-3 font-medium text-gray-700 max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem]"></th>
-          {xLabels.map((xl) => <th class="font-semibold text-gray-500 text-xs uppercase tracking-wider border-b-2 border-gray-200 text-left p-2 px-3 max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.65rem]">{xl}</th>)}
+          {
+            xLabels.map((xl) => (
+              <th class="font-semibold text-gray-500 text-xs uppercase tracking-wider border-b-2 border-gray-200 text-left p-2 px-3 max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.65rem]">
+                {xl}
+              </th>
+            ))
+          }
         </tr>
       </thead>
       <tbody>
         {
           data.map((row, i) => (
             <tr>
-              <th class=" bg-white z-1 min-w-[120px] text-left p-2 px-3 font-medium text-gray-700 max-sm:min-w-[100px] max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem]">{yLabels[i]}</th>
+              <th class=" bg-white z-1 min-w-[120px] text-left p-2 px-3 font-medium text-gray-700 max-sm:min-w-[100px] max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem]">
+                {yLabels[i]}
+              </th>
               {row.map((v) => (
-                <td class="text-center p-2 px-3 font-semibold text-[#1e3a5f] border border-gray-200 max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem] max-sm:min-w-[44px]" style={{ backgroundColor: color(v) }}>{v}</td>
+                <td
+                  class="text-center p-2 px-3 font-semibold text-[#1e3a5f] border border-gray-200 max-sm:p-1.5 max-sm:px-2 max-sm:text-[0.8rem] max-sm:min-w-[44px]"
+                  style={{ backgroundColor: color(v) }}
+                >
+                  {v}
+                </td>
               ))}
             </tr>
           ))
