@@ -252,3 +252,4 @@ __marimo__/
 .streamlit/secrets.toml
 
 scripts/json_data
+scripts/data
