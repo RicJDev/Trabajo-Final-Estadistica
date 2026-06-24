@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL
 const path = Astro.url.pathname
 
 const navItems = [
-  { href: base, label: 'Inicio' },
+  { href: base, label: 'Resumen' },
   { href: `${base}estudiantes/`, label: 'Estudiantes' },
   { href: `${base}egresados/`, label: 'Egresados' },
   { href: `${base}comparativa/`, label: 'Comparativa' },
@@ -21,7 +21,10 @@ function isActive(itemHref: string) {
 }
 ---
 
-<header class="sticky top-0 z-100 bg-white border-b border-gray-200" transition:persist>
+<header
+  class="sticky top-0 z-100 bg-white border-b border-gray-200"
+  transition:persist
+>
   <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 gap-4">
     <div class="flex items-center gap-2">
       <button
@@ -32,7 +35,7 @@ function isActive(itemHref: string) {
       >
         <svg
           id="menu-icon-open"
-          class="w-6 h-6 text-gray-700"
+          class="size-7 text-gray-700"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -46,7 +49,7 @@ function isActive(itemHref: string) {
         </svg>
         <svg
           id="menu-icon-close"
-          class="w-6 h-6 text-gray-700 hidden"
+          class="size-7 text-gray-700 hidden"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -65,15 +68,13 @@ function isActive(itemHref: string) {
         >Encuesta AIS 2026</a
       >
     </div>
-    <nav class="hidden md:flex gap-1 flex-wrap">
+    <nav class="hidden md:flex gap-1 flex-wrap justify-center">
       {
         navItems.map((item) => (
           <a
             href={item.href}
             class="text-sm no-underline px-2 py-1 rounded transition hover:bg-gray-100"
-            class:list={[
-              isActive(item.href) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900',
-            ]}
+            class:list={[isActive(item.href) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900']}
             data-nav
           >
             {item.label}
@@ -97,9 +98,7 @@ function isActive(itemHref: string) {
           <a
             href={item.href}
             class="text-sm no-underline px-3 py-2 rounded transition hover:bg-gray-100"
-            class:list={[
-              isActive(item.href) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900',
-            ]}
+            class:list={[isActive(item.href) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900']}
             data-nav
           >
             {item.label}
@@ -144,9 +143,7 @@ function isActive(itemHref: string) {
 
     document.querySelectorAll('[data-nav]').forEach((link) => {
       const href = link.getAttribute('href') ?? ''
-      const isActive = href === base
-        ? path === base || path === base.replace(/\/$/, '')
-        : path.startsWith(href)
+      const isActive = href === base ? path === base || path === base.replace(/\/$/, '') : path.startsWith(href)
 
       link.classList.toggle('text-gray-900', isActive)
       link.classList.toggle('bg-gray-100', isActive)
