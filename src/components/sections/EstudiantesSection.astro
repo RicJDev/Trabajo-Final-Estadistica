@@ -16,7 +16,7 @@ const { data: d } = Astro.props
   id="estudiantes"
   class="max-w-6xl mx-auto px-6 py-8 pb-12"
 >
-  <h2 class="text-2xl font-bold text-gray-900 mb-4">Resultados</h2>
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">Estudiantes</h2>
 
   <div
     id="lenguajes-herramientas"
@@ -36,14 +36,14 @@ const { data: d } = Astro.props
         titulo="¿Qué frameworks o librerías del ecosistema te interesa dominar?"
         descripcion="Node.js es el framework más reconocido, seguido de cerca por Express y React, lo que indica un fuerte enfoque en el desarrollo backend y frontend moderno."
       />
-      <HeatmapChart
-        id="chart-heatmap"
-        xLabels={d.heatmap.xLabels}
-        yLabels={d.heatmap.yLabels}
-        data={d.heatmap.data}
-        titulo={d.heatmap.title}
-        descripcion="Relación entre los lenguajes que estudian y los frameworks que les interesa dominar."
-      />
+      <!-- <HeatmapChart -->
+      <!--   id="chart-heatmap" -->
+      <!--   xLabels={d.heatmap.xLabels} -->
+      <!--   yLabels={d.heatmap.yLabels} -->
+      <!--   data={d.heatmap.data} -->
+      <!--   titulo={d.heatmap.title} -->
+      <!--   descripcion="Relación entre los lenguajes que estudian y los frameworks que les interesa dominar." -->
+      <!-- /> -->
     </div>
   </div>
 
