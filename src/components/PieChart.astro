@@ -7,7 +7,10 @@ const { datos, titulo, descripcion, id } = Astro.props
 const chartData = JSON.stringify(datos)
 ---
 
-<div id={id} class="bg-white border border-gray-200 rounded-lg p-6 w-full">
+<div
+  id={id}
+  class="bg-white border border-gray-200 rounded-lg p-6 w-full"
+>
   <h3 class="text-base font-semibold text-gray-900 mb-4">{titulo}</h3>
   {descripcion && <p class="text-sm text-gray-500 mb-4 leading-relaxed">{descripcion}</p>}
   <canvas

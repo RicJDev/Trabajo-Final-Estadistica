@@ -36,41 +36,39 @@ const graduateData: GraduateSectionData = {
   <Footer slot="footer" />
 
   <SectionIndex
-      groups={[
-        {
-          label: 'Perfil laboral',
-          href: '#perfil-laboral',
-          children: [
-            { label: 'Rol de especialización', href: '#chart-rol' },
-            { label: 'Trabaja en el sector', href: '#chart-trabaja-sector' },
-            { label: 'Tiempo para conseguir empleo', href: '#chart-tiempo-empleo' },
-            { label: 'Factor de selección', href: '#chart-factor-seleccion' },
-          ],
-        },
-        {
-          label: 'Lenguajes y herramientas',
-          href: '#lenguajes-herramientas-egresados',
-          children: [
-            { label: 'Lenguajes que usa', href: '#chart-egresados-lenguajes' },
-            { label: 'Frameworks que usa', href: '#chart-egresados-frameworks' },
-          ],
-        },
-        {
-          label: 'Inglés',
-          href: '#ingles',
-          children: [
-            { label: 'Nivel requerido', href: '#chart-nivel-ingles' },
-          ],
-        },
-        {
-          label: 'IA en el trabajo',
-          href: '#ia-trabajo',
-          children: [
-            { label: 'Frecuencia de uso de IA', href: '#chart-egresados-frecuencia-ia' },
-            { label: 'Impacto de la IA', href: '#chart-egresados-impacto-ia' },
-          ],
-        },
-      ]}
-    />
+    groups={[
+      {
+        label: 'Perfil laboral',
+        href: '#perfil-laboral',
+        children: [
+          { label: 'Rol de especialización', href: '#chart-rol' },
+          { label: 'Trabaja en el sector', href: '#chart-trabaja-sector' },
+          { label: 'Tiempo para conseguir empleo', href: '#chart-tiempo-empleo' },
+          { label: 'Factor de selección', href: '#chart-factor-seleccion' },
+        ],
+      },
+      {
+        label: 'Lenguajes y herramientas',
+        href: '#lenguajes-herramientas-egresados',
+        children: [
+          { label: 'Lenguajes que usa', href: '#chart-egresados-lenguajes' },
+          { label: 'Frameworks que usa', href: '#chart-egresados-frameworks' },
+        ],
+      },
+      {
+        label: 'Inglés',
+        href: '#ingles',
+        children: [{ label: 'Nivel requerido', href: '#chart-nivel-ingles' }],
+      },
+      {
+        label: 'IA en el trabajo',
+        href: '#ia-trabajo',
+        children: [
+          { label: 'Frecuencia de uso de IA', href: '#chart-egresados-frecuencia-ia' },
+          { label: 'Impacto de la IA', href: '#chart-egresados-impacto-ia' },
+        ],
+      },
+    ]}
+  />
   <EgresadosSection data={graduateData} />
 </Layout>

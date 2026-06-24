@@ -14,24 +14,30 @@ const { data: d } = Astro.props
   class="max-w-6xl mx-auto px-6 py-8 pb-12"
 >
   <h2 class="text-2xl font-bold text-gray-900 mb-4">Comparativas: Estudiantes vs Egresados</h2>
-  <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
-    <GroupedBarChart
-      labels={d.lenguajes.labels}
-      datasets={d.lenguajes.datasets}
-      titulo="Lenguajes de programación: estudiantes (estudian/aprenden) vs egresados (usan en el trabajo)"
-    />
-    <GroupedBarChart
-      labels={d.frameworks.labels}
-      datasets={d.frameworks.datasets}
-      titulo="Frameworks: estudiantes (interés en aprender) vs egresados (usan en el trabajo)"
-    />
-    <GroupedBarChart
-      labels={d.frecuenciaIa.labels}
-      datasets={d.frecuenciaIa.datasets}
-      titulo="Frecuencia de uso de IA: estudiantes vs egresados"
-    />
+
+  <div id="comparativa-general">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6">
+      <GroupedBarChart
+        id="chart-comp-lenguajes"
+        labels={d.lenguajes.labels}
+        datasets={d.lenguajes.datasets}
+        titulo="Lenguajes de programación: estudiantes (estudian/aprenden) vs egresados (usan en el trabajo)"
+      />
+      <GroupedBarChart
+        id="chart-comp-frameworks"
+        labels={d.frameworks.labels}
+        datasets={d.frameworks.datasets}
+        titulo="Frameworks: estudiantes (interés en aprender) vs egresados (usan en el trabajo)"
+      />
+      <GroupedBarChart
+        id="chart-comp-frecuencia-ia"
+        labels={d.frecuenciaIa.labels}
+        datasets={d.frecuenciaIa.datasets}
+        titulo="Frecuencia de uso de IA: estudiantes vs egresados"
+      />
+    </div>
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Los valores muestran el porcentaje de cada grupo que seleccionó cada opción.
+    </p>
   </div>
-  <p class="text-sm text-gray-500 mt-4 text-center">
-    Los valores muestran el porcentaje de cada grupo que seleccionó cada opción.
-  </p>
 </section>

@@ -11,7 +11,7 @@ const e = insights.estudiantes
 const g = insights.egresados
 ---
 
-<h3 class="text-lg font-semibold text-gray-900 mb-3">Estudiantes</h3>
+<!-- <h3 class="text-lg font-semibold text-gray-900 mb-3">Estudiantes</h3> -->
 <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mb-8">
   <InsightBlock
     blue
@@ -47,7 +47,7 @@ const g = insights.egresados
   </InsightBlock>
 </div>
 
-<h3 class="text-lg font-semibold text-gray-900 mb-3">Egresados</h3>
+<!-- <h3 class="text-lg font-semibold text-gray-900 mb-3">Egresados</h3> -->
 <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
   <InsightBlock
     blue
@@ -67,17 +67,11 @@ const g = insights.egresados
     Rol más común — {g.top_rol[0]?.count} respuestas
   </InsightBlock>
 
-  <InsightBlock highlighted={g.top_factor_seleccion[0]?.label}>
-    Factor principal de contratación
-  </InsightBlock>
+  <InsightBlock highlighted={g.top_factor_seleccion[0]?.label}> Factor principal de contratación </InsightBlock>
 
-  <InsightBlock highlighted={`${g.trabaja_sector_pct}%`}>
-    Trabaja en el sector de TI
-  </InsightBlock>
+  <InsightBlock highlighted={`${g.trabaja_sector_pct}%`}> Trabaja en el sector de TI </InsightBlock>
 
-  <InsightBlock highlighted={`${g.usa_ia_diario_pct}%`}>
-    Usa IA a diario en el trabajo
-  </InsightBlock>
+  <InsightBlock highlighted={`${g.usa_ia_diario_pct}%`}> Usa IA a diario en el trabajo </InsightBlock>
 
   <InsightBlock highlighted={g.top_nivel_ingles[0]?.label}>
     Nivel de inglés más requerido — {g.top_nivel_ingles[0]?.count} respuestas
