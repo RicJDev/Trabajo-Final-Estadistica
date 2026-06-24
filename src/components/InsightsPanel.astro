@@ -17,44 +17,68 @@ const g = insights.egresados
     <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em] mb-5">Estudiantes</h3>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <!-- Perfil -->
-      <InsightBlock accent="blue" highlighted={e.top_areas[0]?.label}>
+      <InsightBlock
+        accent="blue"
+        highlighted={e.top_areas[0]?.label}
+      >
         Área más aspirada &mdash; {e.top_areas[0]?.count} respuestas
       </InsightBlock>
-      
+
       <div class="col-span-2 h-full">
-        <InsightBlock accent="green" highlighted={e.meta_graduacion[0]?.label}>
+        <InsightBlock
+          accent="green"
+          highlighted={e.meta_graduacion[0]?.label}
+        >
           Meta al graduarse &mdash; {e.meta_graduacion[0]?.count} respuestas
         </InsightBlock>
       </div>
 
-      <InsightBlock accent="green" highlighted={e.top_lenguajes[0]?.label}>
+      <InsightBlock
+        accent="green"
+        highlighted={e.top_lenguajes[0]?.label}
+      >
         Lenguaje más popular &mdash; {e.top_lenguajes[0]?.count} respuestas
       </InsightBlock>
 
       <!-- Habilidades -->
-      <InsightBlock accent="green" highlighted={e.top_frameworks[0]?.label}>
+      <InsightBlock
+        accent="green"
+        highlighted={e.top_frameworks[0]?.label}
+      >
         Framework más popular &mdash; {e.top_frameworks[0]?.count} respuestas
       </InsightBlock>
 
-      <InsightBlock accent="rose" highlighted={`${e.distribucion_horas[0]?.label}`}>
+      <InsightBlock
+        accent="rose"
+        highlighted={`${e.distribucion_horas[0]?.label}`}
+      >
         Horas autónomas &mdash; {e.distribucion_horas[0]?.count} respuestas
       </InsightBlock>
 
       <div class="col-span-2">
-        <InsightBlock accent="amber" highlighted={e.factor_empleo[0]?.label}>
+        <InsightBlock
+          accent="amber"
+          highlighted={e.factor_empleo[0]?.label}
+        >
           Factor más valorado para empleo &mdash; {e.factor_empleo[0]?.count} respuestas
         </InsightBlock>
       </div>
 
       <!-- IA -->
       <div class="col-span-2">
-        <InsightBlock accent="purple" highlighted={`${e.uso_diario_ia_pct}%`}>
+        <InsightBlock
+          accent="purple"
+          highlighted={`${e.uso_diario_ia_pct}%`}
+        >
           Usan IA a diario
         </InsightBlock>
       </div>
 
       <div class="col-span-2">
-        <InsightBlock accent="purple" highlighted={`${e.impacto_positivo_ia_pct}%`}>
+        <InsightBlock
+          accent="purple"
+          highlighted={`${e.impacto_positivo_ia_pct}%`}
+        >
           Creen que IA será herramienta obligatoria
         </InsightBlock>
       </div>
@@ -66,38 +90,59 @@ const g = insights.egresados
     <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em] mb-5">Egresados</h3>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <!-- Perfil / Inserción -->
-      <InsightBlock accent="amber" highlighted={`${g.trabaja_sector_pct}%`}>
+      <InsightBlock
+        accent="amber"
+        highlighted={`${g.trabaja_sector_pct}%`}
+      >
         Trabaja en el sector IT
       </InsightBlock>
-      
+
       <div class="col-span-2 h-full">
-        <InsightBlock accent="blue" highlighted={g.top_rol[0]?.label}>
+        <InsightBlock
+          accent="blue"
+          highlighted={g.top_rol[0]?.label}
+        >
           Rol más común &mdash; {g.top_rol[0]?.count} respuestas
         </InsightBlock>
       </div>
-        
-      <InsightBlock accent="green" highlighted={g.top_lenguajes[0]?.label}>
+
+      <InsightBlock
+        accent="green"
+        highlighted={g.top_lenguajes[0]?.label}
+      >
         Lenguaje más usado &mdash; {g.top_lenguajes[0]?.count} respuestas
       </InsightBlock>
 
       <!-- Stack laboral -->
-      <InsightBlock accent="green" highlighted={g.top_frameworks[0]?.label}>
+      <InsightBlock
+        accent="green"
+        highlighted={g.top_frameworks[0]?.label}
+      >
         Framework más usado &mdash; {g.top_frameworks[0]?.count} respuestas
       </InsightBlock>
 
       <div class="col-span-2 h-full">
-        <InsightBlock accent="amber" highlighted={g.top_factor_seleccion[0]?.label}>
+        <InsightBlock
+          accent="amber"
+          highlighted={g.top_factor_seleccion[0]?.label}
+        >
           Factor principal de contratación
         </InsightBlock>
       </div>
 
-      <InsightBlock accent="rose" highlighted={g.top_nivel_ingles[0]?.label}>
+      <InsightBlock
+        accent="rose"
+        highlighted={g.top_nivel_ingles[0]?.label}
+      >
         Inglés más requerido &mdash; {g.top_nivel_ingles[0]?.count} respuestas
       </InsightBlock>
 
       <!-- IA full-width -->
       <div class="col-span-2 md:col-span-4">
-        <InsightBlock accent="purple" highlighted={`${g.usa_ia_diario_pct}%`}>
+        <InsightBlock
+          accent="purple"
+          highlighted={`${g.usa_ia_diario_pct}%`}
+        >
           Usa IA a diario en el trabajo
         </InsightBlock>
       </div>
