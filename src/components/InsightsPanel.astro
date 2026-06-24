@@ -11,69 +11,96 @@ const e = insights.estudiantes
 const g = insights.egresados
 ---
 
-<!-- <h3 class="text-lg font-semibold text-gray-900 mb-3">Estudiantes</h3> -->
-<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mb-8">
-  <InsightBlock
-    blue
-    highlighted={e.total}
-    >Estudiantes encuestados</InsightBlock
-  >
+<div class="space-y-12">
+  <!-- ESTUDIANTES -->
+  <section>
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em] mb-5">Estudiantes</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Perfil -->
+      <InsightBlock accent="blue" highlighted={e.top_areas[0]?.label}>
+        Área más aspirada &mdash; {e.top_areas[0]?.count} respuestas
+      </InsightBlock>
+      
+      <div class="col-span-2 h-full">
+        <InsightBlock accent="green" highlighted={e.meta_graduacion[0]?.label}>
+          Meta al graduarse &mdash; {e.meta_graduacion[0]?.count} respuestas
+        </InsightBlock>
+      </div>
 
-  <InsightBlock highlighted={e.top_lenguajes[0]?.label}>
-    Lenguaje más popular — {e.top_lenguajes[0]?.count} respuestas
-  </InsightBlock>
+      <InsightBlock accent="green" highlighted={e.top_lenguajes[0]?.label}>
+        Lenguaje más popular &mdash; {e.top_lenguajes[0]?.count} respuestas
+      </InsightBlock>
 
-  <InsightBlock highlighted={e.top_frameworks[0]?.label}>
-    Framework más popular — {e.top_frameworks[0]?.count} respuestas
-  </InsightBlock>
+      <!-- Habilidades -->
+      <InsightBlock accent="green" highlighted={e.top_frameworks[0]?.label}>
+        Framework más popular &mdash; {e.top_frameworks[0]?.count} respuestas
+      </InsightBlock>
 
-  <InsightBlock highlighted={e.top_areas[0]?.label}>
-    Área más aspirada — {e.top_areas[0]?.count} respuestas
-  </InsightBlock>
+      <InsightBlock accent="rose" highlighted={`${e.distribucion_horas[0]?.label}`}>
+        Horas autónomas &mdash; {e.distribucion_horas[0]?.count} respuestas
+      </InsightBlock>
 
-  <InsightBlock highlighted={`${e.uso_diario_ia_pct}%`}>Usan IA a diario</InsightBlock>
-  <InsightBlock highlighted={`${e.impacto_positivo_ia_pct}%`}>Creen que IA será herramienta obligatoria</InsightBlock>
+      <div class="col-span-2">
+        <InsightBlock accent="amber" highlighted={e.factor_empleo[0]?.label}>
+          Factor más valorado para empleo &mdash; {e.factor_empleo[0]?.count} respuestas
+        </InsightBlock>
+      </div>
 
-  <InsightBlock highlighted={e.meta_graduacion[0]?.label}>
-    Meta principal al graduarse — {e.meta_graduacion[0]?.count} respuestas
-  </InsightBlock>
+      <!-- IA -->
+      <div class="col-span-2">
+        <InsightBlock accent="purple" highlighted={`${e.uso_diario_ia_pct}%`}>
+          Usan IA a diario
+        </InsightBlock>
+      </div>
 
-  <InsightBlock highlighted={e.factor_empleo[0]?.label}>
-    Factor más valorado para empleo — {e.factor_empleo[0]?.count} respuestas
-  </InsightBlock>
+      <div class="col-span-2">
+        <InsightBlock accent="purple" highlighted={`${e.impacto_positivo_ia_pct}%`}>
+          Creen que IA será herramienta obligatoria
+        </InsightBlock>
+      </div>
+    </div>
+  </section>
 
-  <InsightBlock highlighted={e.distribucion_horas[0]?.label}>
-    Horas autónomas más comunes — {e.distribucion_horas[0]?.count} respuestas
-  </InsightBlock>
-</div>
+  <!-- EGRESADOS -->
+  <section>
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em] mb-5">Egresados</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Perfil / Inserción -->
+      <InsightBlock accent="amber" highlighted={`${g.trabaja_sector_pct}%`}>
+        Trabaja en el sector IT
+      </InsightBlock>
+      
+      <div class="col-span-2 h-full">
+        <InsightBlock accent="blue" highlighted={g.top_rol[0]?.label}>
+          Rol más común &mdash; {g.top_rol[0]?.count} respuestas
+        </InsightBlock>
+      </div>
+        
+      <InsightBlock accent="green" highlighted={g.top_lenguajes[0]?.label}>
+        Lenguaje más usado &mdash; {g.top_lenguajes[0]?.count} respuestas
+      </InsightBlock>
 
-<!-- <h3 class="text-lg font-semibold text-gray-900 mb-3">Egresados</h3> -->
-<div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-  <InsightBlock
-    blue
-    highlighted={g.total}
-    >Egresados encuestados</InsightBlock
-  >
+      <!-- Stack laboral -->
+      <InsightBlock accent="green" highlighted={g.top_frameworks[0]?.label}>
+        Framework más usado &mdash; {g.top_frameworks[0]?.count} respuestas
+      </InsightBlock>
 
-  <InsightBlock highlighted={g.top_lenguajes[0]?.label}>
-    Lenguaje más usado en el trabajo — {g.top_lenguajes[0]?.count} respuestas
-  </InsightBlock>
+      <div class="col-span-2 h-full">
+        <InsightBlock accent="amber" highlighted={g.top_factor_seleccion[0]?.label}>
+          Factor principal de contratación
+        </InsightBlock>
+      </div>
 
-  <InsightBlock highlighted={g.top_frameworks[0]?.label}>
-    Framework más usado — {g.top_frameworks[0]?.count} respuestas
-  </InsightBlock>
+      <InsightBlock accent="rose" highlighted={g.top_nivel_ingles[0]?.label}>
+        Inglés más requerido &mdash; {g.top_nivel_ingles[0]?.count} respuestas
+      </InsightBlock>
 
-  <InsightBlock highlighted={g.top_rol[0]?.label}>
-    Rol más común — {g.top_rol[0]?.count} respuestas
-  </InsightBlock>
-
-  <InsightBlock highlighted={g.top_factor_seleccion[0]?.label}> Factor principal de contratación </InsightBlock>
-
-  <InsightBlock highlighted={`${g.trabaja_sector_pct}%`}> Trabaja en el sector de TI </InsightBlock>
-
-  <InsightBlock highlighted={`${g.usa_ia_diario_pct}%`}> Usa IA a diario en el trabajo </InsightBlock>
-
-  <InsightBlock highlighted={g.top_nivel_ingles[0]?.label}>
-    Nivel de inglés más requerido — {g.top_nivel_ingles[0]?.count} respuestas
-  </InsightBlock>
+      <!-- IA full-width -->
+      <div class="col-span-2 md:col-span-4">
+        <InsightBlock accent="purple" highlighted={`${g.usa_ia_diario_pct}%`}>
+          Usa IA a diario en el trabajo
+        </InsightBlock>
+      </div>
+    </div>
+  </section>
 </div>
