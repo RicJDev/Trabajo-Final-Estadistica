@@ -97,8 +97,18 @@ export function createPieChart(canvas: HTMLCanvasElement, data: DataPoint[], tit
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom' },
+        legend: {
+          position: 'bottom',
+          align: 'start',
+          labels: {
+            boxWidth: 12,
+            boxHeight: 12,
+            padding: 12,
+            usePointStyle: true,
+          },
+        },
         tooltip: {
           callbacks: {
             label: (ctx) => {
