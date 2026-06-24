@@ -1,22 +1,22 @@
 {
   "estudiantes": {
-    "total": 217,
+    "total": 220,
     "top_lenguajes": [
       {
-        "label": "Python",
-        "count": 135
+        "label": "JavaScript",
+        "count": 137
       },
       {
-        "label": "JavaScript",
-        "count": 134
+        "label": "Python",
+        "count": 137
       },
       {
         "label": "C++",
-        "count": 93
+        "count": 94
       },
       {
         "label": "SQL",
-        "count": 58
+        "count": 59
       },
       {
         "label": "Java",
@@ -26,7 +26,7 @@
     "top_frameworks": [
       {
         "label": "Node.js",
-        "count": 100
+        "count": 103
       },
       {
         "label": "Otro",
@@ -34,15 +34,15 @@
       },
       {
         "label": "Express",
-        "count": 54
+        "count": 55
       },
       {
         "label": "React",
-        "count": 51
+        "count": 52
       },
       {
         "label": "Next.js",
-        "count": 46
+        "count": 48
       }
     ],
     "top_areas": [
@@ -78,21 +78,21 @@
       },
       {
         "label": "De 6 a 10 horas",
-        "count": 19
+        "count": 20
       },
       {
         "label": "Más de 10 horas",
-        "count": 12
+        "count": 14
       }
     ],
     "factor_empleo": [
       {
         "label": "El título universitario de nuestra institución",
-        "count": 71
+        "count": 72
       },
       {
         "label": "Mi portafolio de proyectos personales / repositorio de GitHub",
-        "count": 60
+        "count": 61
       },
       {
         "label": "El dominio del idioma inglés y habilidades blandas",
@@ -100,7 +100,7 @@
       },
       {
         "label": "Certificaciones externas de la industria (AWS, Cisco, Scrum, etc.)",
-        "count": 25
+        "count": 26
       },
       {
         "label": "No estoy seguro / no lo sé aún",
@@ -110,7 +110,7 @@
     "impacto_ia": [
       {
         "label": "Será una herramienta obligatoria que aumentará la productividad, pero no reemplazará el rol",
-        "count": 173
+        "count": 176
       },
       {
         "label": "Reemplazará gran parte del trabajo humano en esa área",
@@ -128,11 +128,11 @@
     "frecuencia_ia": [
       {
         "label": "Diariamente (Es parte fundamental de mi método de estudio)",
-        "count": 108
+        "count": 110
       },
       {
         "label": "Ocasionalmente (1 o 2 veces por semana)",
-        "count": 85
+        "count": 86
       },
       {
         "label": "Rara vez (1 o 2 veces al mes)",
@@ -146,15 +146,15 @@
     "meta_graduacion": [
       {
         "label": "Trabajar de forma remota para una empresa extranjera",
-        "count": 77
+        "count": 78
       },
       {
         "label": "Crear mi propia empresa / Emprender",
-        "count": 63
+        "count": 64
       },
       {
         "label": "Trabajar en una empresa local (presencial o híbrido)",
-        "count": 39
+        "count": 40
       },
       {
         "label": "No lo sé / Estoy indeciso(a)",
@@ -165,8 +165,8 @@
         "count": 10
       }
     ],
-    "uso_diario_ia_pct": 49.8,
-    "impacto_positivo_ia_pct": 79.7
+    "uso_diario_ia_pct": 50.0,
+    "impacto_positivo_ia_pct": 80.0
   },
   "egresados": {
     "total": 18,
